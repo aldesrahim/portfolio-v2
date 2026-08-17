@@ -1,6 +1,6 @@
 ---
 title: "Monogram AI"
-year: "2024"
+year: "2026"
 client: "Side Project"
 stack:
   - "NuxtJS"

@@ -1,6 +1,6 @@
 ---
 title: "Wedding Invitation"
-year: "2024"
+year: "2026"
 client: "Side Project"
 stack:
   - "Laravel"
