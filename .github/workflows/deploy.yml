@@ -63,10 +63,18 @@ jobs:
             -e "ssh -p $DEPLOY_PORT -i ~/.ssh/deploy_key -o BatchMode=yes" \
             dist/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
 
+      # The site sits behind Cloudflare, so a single bad response can be an edge
+      # hiccup rather than a broken deploy (a 525 is the edge failing to reach
+      # the origin at all). Retry before calling it a failure.
       - name: Smoke test
         run: |
-          for path in / /work/monogram-ai/; do
-            code=$(curl -sS -o /dev/null -w '%{http_code}' "https://aldes.dev$path")
-            echo "$path -> $code"
-            [ "$code" = "200" ] || exit 1
-          done
+          check() {
+            for attempt in 1 2 3 4; do
+              code=$(curl -sS --max-time 20 -o /dev/null -w '%{http_code}' "https://aldes.dev$1" || echo 000)
+              echo "$1 -> $code (attempt $attempt)"
+              [ "$code" = "200" ] && return 0
+              sleep $((attempt * 10))
+            done
+            return 1
+          }
+          check / && check /work/monogram-ai/
