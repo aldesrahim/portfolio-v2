@@ -265,20 +265,13 @@ h4 {
   flex-wrap: wrap;
 }
 
-.masthead .brand {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
+/* The links run from the left edge and the toggle is pushed to the right, so
+   the masthead reads as one rule from margin to margin at every width. */
 .nav {
   display: flex;
   gap: 22px;
   align-items: center;
-  margin-left: auto;
+  margin-right: auto;
 }
 .nav a {
   color: var(--ink-2);
@@ -287,10 +280,6 @@ h4 {
   white-space: nowrap;
 }
 .nav a:hover {
-  color: var(--ink);
-  border-bottom-color: var(--accent);
-}
-.nav a.active {
   color: var(--ink);
   border-bottom-color: var(--accent);
 }
@@ -927,8 +916,11 @@ h4 {
   .masthead .cell {
     gap: 12px 18px;
   }
+  /* Narrow enough and the four links wrap among themselves; the toggle keeps
+     its own corner rather than being pushed off the row. */
   .nav {
-    gap: 16px;
+    gap: 10px 16px;
+    flex-wrap: wrap;
   }
 
   .rail {

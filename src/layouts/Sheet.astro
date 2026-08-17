@@ -8,11 +8,9 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  /** Nav link to underline (matches `nav.links[].id` in the config). */
-  active?: string;
 }
 
-const { title, description = site.description, active } = Astro.props;
+const { title, description = site.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/');
 ---
 
@@ -53,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
   <body>
     <div class="frame" id="frame">
       <div class="crosshairs" id="crosshairs" aria-hidden="true"></div>
-      <Nav active={active} />
+      <Nav />
       <slot />
       <Footer />
     </div>

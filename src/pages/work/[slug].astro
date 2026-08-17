@@ -20,7 +20,7 @@ const { data, images } = project;
 const { Content } = await render(project.entry);
 ---
 
-<Sheet title={`${data.title} — ${site.titleSuffix}`} description={data.description} active="work">
+<Sheet title={`${data.title} — ${site.titleSuffix}`} description={data.description}>
   <div class="row back">
     <div class="cell c12">
       <a class="mono link" href="/#work">{site.project.backLabel}</a>

@@ -31,7 +31,7 @@ const indexColumns = [rest.slice(0, half), rest.slice(half)].filter((col) => col
 const mailto = site.contact.email.replace('{split}', '<br>');
 ---
 
-<Sheet title={site.title} active="work">
+<Sheet title={site.title}>
   <!-- 01 — Name -->
   <section class="row hero">
     <Rail num={s.name.num} label={s.name.label} />

@@ -124,12 +124,15 @@ horizontally. The project gallery relaxes from 12/5 to 4/3.
 
 ## Components
 
-**Masthead** — one 12-column cell: brand left, mono nav right, then the theme
-toggle. Not sticky: a sticky bar inside the frame would drift away from the
-crosshair layer, which is measured once per layout.
+**Masthead** — one 12-column cell: mono nav left, theme toggle right. Not
+sticky: a sticky bar inside the frame would drift away from the crosshair
+layer, which is measured once per layout.
 
-The active link follows the URL hash, not scroll position. Section header rows
-carry a small `scroll-margin-top` so an anchor jump does not clip the rail.
+No name in the bar — the hero says it a screen later, at size. No active state
+on the links either: the bar scrolls away, so an underline marking "where you
+are" would be out of sight exactly when it started being true. Section header
+rows still carry a small `scroll-margin-top` so an anchor jump does not clip
+the rail.
 
 **Theme toggle** — mono 11px in a 1px `--line` box with a 7px accent square
 before the label. The square fills in dark mode. There are no circles in this

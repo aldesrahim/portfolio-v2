@@ -10,8 +10,6 @@ export interface NavLink {
   label: string;
   /** Anchor on the home page (e.g. "#work") or an absolute path. */
   href: string;
-  /** Matches this nav link to a section id for the active underline. */
-  id?: string;
 }
 
 /** One row of the hero definition list: term on the left, value on the right. */
@@ -123,14 +121,16 @@ export const site = {
    * `src/styles/global.css`.
    */
 
+  /*
+   * The masthead carries links only — the name belongs to the hero, and
+   * repeating it in a bar that scrolls away earned nothing.
+   */
   nav: {
-    /** Mono brand text at the left of the masthead. */
-    brand: 'Ahmad Al Desrahim',
     links: [
-      { label: 'Stack', href: '/#stack', id: 'stack' },
-      { label: 'Work', href: '/#work', id: 'work' },
-      { label: 'OSS', href: '/#oss', id: 'oss' },
-      { label: 'Contact', href: '/#contact', id: 'contact' },
+      { label: 'Stack', href: '/#stack' },
+      { label: 'Work', href: '/#work' },
+      { label: 'OSS', href: '/#oss' },
+      { label: 'Contact', href: '/#contact' },
     ] satisfies NavLink[],
     themeLabel: 'Theme',
   },
