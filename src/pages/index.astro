@@ -1,113 +1,194 @@
 ---
 import Sheet from '../layouts/Sheet.astro';
-import SectionBand from '../components/SectionBand.astro';
+import Rail from '../components/Rail.astro';
+import SectionHead from '../components/SectionHead.astro';
 import WorkEntry from '../components/WorkEntry.astro';
-import OssBand from '../components/OssBand.astro';
+import OssCard from '../components/OssCard.astro';
 import site from '../config/site';
-import { getSplitProjects, pad } from '../lib/projects';
+import { getSplitProjects } from '../lib/projects';
+import { getCounts, fill } from '../lib/tokens';
 
-const { all, featured, rest } = await getSplitProjects();
+const { featured, rest } = await getSplitProjects();
+const counts = await getCounts();
+const s = site.sections;
+
+/**
+ * Even columns for however many groups or cards the config carries. The last
+ * cell takes any remainder so the row always closes on the frame's right edge.
+ */
+function spans(count: number): string[] {
+  const base = Math.max(2, Math.floor(12 / Math.max(count, 1)));
+  const last = Math.max(base, 12 - base * (count - 1));
+  return Array.from({ length: count }, (_, i) => `c${i === count - 1 ? last : base}`);
+}
+const stackSpans = spans(site.stack.length);
+const ossSpans = spans(site.oss.length);
+
+/** The index reads down the left column first, then the right. */
+const half = Math.ceil(rest.length / 2);
+const indexColumns = [rest.slice(0, half), rest.slice(half)].filter((col) => col.length > 0);
+
+const mailto = site.contact.email.replace('{split}', '<br>');
 ---
 
 <Sheet title={site.title} active="work">
-  <!-- Hero -->
-  <section class="band hero">
-    <div class="band-label">
-      <div>{site.hero.indexLabel}</div>
-      {site.hero.index.map((row) => <div class={row.accent ? 'accent' : undefined}>{row.text}</div>)}
+  <!-- 01 — Name -->
+  <section class="row hero">
+    <Rail num={s.name.num} label={s.name.label} />
+    <div class="cell c5 hero-name">
+      <h1 set:html={site.hero.heading} />
     </div>
-    <div class="band-content">
-      <h1>{site.hero.heading}</h1>
-      <p class="lede" set:html={site.hero.lede} />
+    <div class="cell c4 hero-meta">
+      <dl class="meta">
+        {
+          site.hero.meta.map((row) => (
+            <>
+              <dt>{row.term}</dt>
+              <dd>
+                {row.accent && <span class="dot" />}
+                {fill(row.value, counts)}
+              </dd>
+            </>
+          ))
+        }
+      </dl>
     </div>
   </section>
 
-  <!-- Work -->
-  <SectionBand
+  <!-- 02 — Brief -->
+  <section class="row brief">
+    <Rail num={s.brief.num} label={s.brief.label} />
+    <div class="cell c6">
+      <p class="lede">{site.brief.lede}</p>
+      <p class="sub">{site.brief.sub}</p>
+    </div>
+    <div class="cell c3">
+      <ul class="mono facts">
+        {
+          site.brief.facts.map((fact) => (
+            <li>
+              <span>{fact.label}</span>
+              <b>{fill(fact.value, counts)}</b>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 — Tech stack -->
+  {
+    site.showStack && site.stack.length > 0 && (
+      <>
+        <SectionHead
+          id="stack"
+          num={s.stack.num}
+          label={s.stack.label}
+          heading={s.stack.heading!}
+        />
+        <section class="row stack">
+          {site.stack.map((group, i) => (
+            <div class:list={['cell', stackSpans[i], 'stack-group']}>
+              <h4 class="mono">{group.title}</h4>
+              <ul class="mono list">
+                {group.items.map((item) => (
+                  <li>
+                    {item.name}
+                    {item.note && <i>{item.note}</i>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      </>
+    )
+  }
+
+  <!-- 04 — Work -->
+  <SectionHead
     id="work"
-    label={site.sections.work.label}
-    counter={`${pad(featured.length)} of ${pad(all.length)}`}
+    num={s.work.num}
+    label={s.work.label}
+    heading={s.work.heading!}
+    note={fill(s.work.note!, counts)}
   />
   {featured.map((project, i) => <WorkEntry project={project} number={i + 1} />)}
 
-  <!-- Also built -->
+  <!-- 04b — Other work -->
   {
     rest.length > 0 && (
       <>
-        <SectionBand
+        <SectionHead
           id="built"
-          label={site.sections.built.label}
-          counter={`${pad(rest.length)} of ${pad(all.length)}`}
+          num={s.other.num}
+          label={s.other.label}
+          heading={fill(s.other.heading!, counts)}
+          small
         />
-        <section class="band">
-          <div class="band-label">{site.sections.built.bandLabel}</div>
-          <div class="band-content">
-            {rest.map((project) => (
-              <div class="also-row">
-                <span class="name"><a href={project.url}>{project.data.title}</a></span>
-                <span class="meta">{project.data.year}</span>
-              </div>
-            ))}
-          </div>
+        <section class="row otherwork">
+          {indexColumns.map((column) => (
+            <div class:list={['cell', indexColumns.length === 1 ? 'c12' : 'c6', 'index-col']}>
+              <ol class="index mono">
+                {column.map((project) => (
+                  <li>
+                    <span class="ix-y">{project.data.year}</span>
+                    <span class="ix-n">
+                      <a href={project.url}>{project.data.title}</a>
+                    </span>
+                    <span class="ix-t">{project.data.stack.join(' · ')}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
         </section>
       </>
     )
   }
 
-  <!-- Stack -->
-  {
-    site.showStack && (
-      <>
-        <SectionBand label="Stack" counter={`${pad(site.stack.length)} rows`} id="stack" />
-        <section class="band">
-          <div class="band-label">Tooling</div>
-          <div class="band-content">
-            {site.stack.map((row) => (
-              <div class="stack-row">
-                <span class="stack-items">{row.items}</span>
-                <span class="stack-label">{row.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  <!-- Open source -->
+  <!-- 05 — Open source -->
   {
     site.oss.length > 0 && (
       <>
-        <SectionBand
+        <SectionHead
           id="oss"
-          label={site.sections.oss.label}
-          counter={site.sections.oss.counter}
+          num={s.oss.num}
+          label={s.oss.label}
+          heading={s.oss.heading!}
+          note={s.oss.note}
+          headingSpan="c4"
+          noteSpan="c5"
         />
-        {site.oss.map((entry) => <OssBand entry={entry} />)}
+        <section class="row repos">
+          {site.oss.map((entry, i) => (
+            <OssCard entry={entry} span={ossSpans[i]} />
+          ))}
+        </section>
       </>
     )
   }
 
-  <!-- Contact -->
-  <SectionBand
-    id="contact"
-    label={site.sections.contact.label}
-    counter={site.sections.contact.counter}
-  />
-  <section class="band contact">
-    <div class="band-label">{site.sections.contact.bandLabel}</div>
-    <div class="band-content">
-      <p class="statement">{site.contact.statement}</p>
-      <div class="link-table">
+  <!-- 06 — Contact -->
+  <section class="row contact" id="contact">
+    <Rail num={s.contact.num} label={s.contact.label} />
+    <div class="cell c5">
+      <a class="mailto" href={site.contact.emailHref} set:html={mailto} />
+    </div>
+    <div class="cell c4">
+      <ul class="mono channels">
         {
-          site.contact.links.map((link) => (
-            <div class="link-row">
-              <span class="link-target"><a href={link.href}>{link.target}</a></span>
-              <span class="link-label">{link.label}</span>
-            </div>
+          site.contact.channels.map((channel) => (
+            <li>
+              <span>{channel.label}</span>
+              <a href={channel.href} target={channel.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                {channel.target}
+              </a>
+            </li>
           ))
         }
-      </div>
+      </ul>
+      <p class="mono note tight">{site.contact.note}</p>
     </div>
   </section>
 </Sheet>

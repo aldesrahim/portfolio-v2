@@ -1,4 +1,4 @@
-# Portfolio — printed catalogue
+# Portfolio — exposed grid
 
 Astro 7 static site. Design direction and rules: [DESIGN.md](DESIGN.md).
 
@@ -59,9 +59,10 @@ rendered list, not the filename prefix.
 
 ### Featured vs. also built
 
-`featured: true` gives a full Work entry: label column, description, live link,
-and an image slider. Everything else becomes one row under "Also built" and
-still gets its own project page.
+`featured: true` gives a full Work row: rail, screenshot slider, description,
+stack chips, and links. The column split cycles through three variants, so
+consecutive featured rows never share a rhythm. Everything else becomes one line
+in the "Other work" index and still gets its own project page.
 
 ## Images
 
@@ -72,9 +73,9 @@ default). Originals stay out of `dist/`. Any `png`, `jpg`, `webp`, `avif`, or
 
 ## Fonts
 
-Newsreader and IBM Plex Mono are fetched at build time by Astro's font pipeline
-and self-hosted from `dist/_astro/fonts/` — no request to Google at runtime.
-Configured in `astro.config.ts`; used through `--font-serif` / `--font-mono`.
+Inter and IBM Plex Mono are fetched at build time by Astro's font pipeline and
+self-hosted from `dist/_astro/fonts/` — no request to Google at runtime.
+Configured in `astro.config.ts`; used through `--font-sans` / `--font-mono`.
 
 ## Theme
 
@@ -82,9 +83,15 @@ Light by default, set by `site.defaultTheme`. The toggle stores the choice in
 `localStorage` and an inline script applies it before first paint, so there is
 no flash.
 
+## Counts in copy
+
+Strings in `src/config/site.ts` may carry `{year}`, `{years}`, `{projects}`,
+`{featured}`, `{other}`, or `{oss}`. They are replaced at build time from the
+content on disk (`src/lib/tokens.ts`), so no count in the copy can drift.
+
 ## Not wired up
 
-- `site.showStack` is `false`; flip it to render a Stack band on the index.
 - No sitemap or RSS integration — add `@astrojs/sitemap` if the site needs one.
-- `mockup/` and `backup-1/` are the original static prototypes, kept for
-  reference. They are excluded from the build.
+- `mockup/`, `mockup2/`, and `backup-1/` are static prototypes, kept for
+  reference. `mockup2/` is the design this site now implements. They are
+  excluded from the build.

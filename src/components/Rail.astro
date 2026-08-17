@@ -1,0 +1,20 @@
+---
+/** The left rail of a row: section number, then one or two mono labels. */
+interface Props {
+  /** Omitted on rails that only carry a label, such as "About". */
+  num?: string;
+  label?: string;
+  /** Third line, dimmer than the label. */
+  sub?: string;
+  /** Column span. The rail is 3 columns everywhere except the wide feature. */
+  span?: string;
+}
+
+const { num, label, sub, span = 'c3' } = Astro.props;
+---
+
+<div class:list={['cell', span, 'rail']}>
+  {num && <span class="mono num">{num}</span>}
+  {label && <span class="mono lbl">{label}</span>}
+  {sub && <span class="mono lbl faint">{sub}</span>}
+</div>

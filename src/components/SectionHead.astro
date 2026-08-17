@@ -1,0 +1,46 @@
+---
+import Rail from './Rail.astro';
+
+/**
+ * A section header row: rail, display heading, and an optional mono note.
+ * Without a note the heading takes the remaining nine columns.
+ */
+interface Props {
+  id?: string;
+  num: string;
+  label: string;
+  /** Inline HTML allowed — `<br>` sets the line breaks. */
+  heading: string;
+  note?: string;
+  /** Span of the heading cell when a note is present. */
+  headingSpan?: string;
+  noteSpan?: string;
+  /** Sets the heading at index size instead of display size. */
+  small?: boolean;
+}
+
+const {
+  id,
+  num,
+  label,
+  heading,
+  note,
+  headingSpan = 'c5',
+  noteSpan = 'c4',
+  small = false,
+} = Astro.props;
+---
+
+<section class="row sec-head" id={id}>
+  <Rail num={num} label={label} />
+  <div class:list={['cell', note ? headingSpan : 'c9', 'head-wide', { small }]}>
+    <h2 set:html={heading} />
+  </div>
+  {
+    note && (
+      <div class:list={['cell', noteSpan]}>
+        <p class="mono note">{note}</p>
+      </div>
+    )
+  }
+</section>

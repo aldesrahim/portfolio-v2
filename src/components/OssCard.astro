@@ -1,0 +1,28 @@
+---
+import type { OssEntry } from '../config/site';
+
+interface Props {
+  entry: OssEntry;
+  /** Column span, computed from how many entries share the row. */
+  span?: string;
+}
+
+const { entry, span = 'c3' } = Astro.props;
+---
+
+<div class:list={['cell', span, 'repo']}>
+  <div class="repo-h">
+    <h3 class="mono">{entry.name}</h3>
+    <span class="mono tag">{entry.tag}</span>
+  </div>
+  <p>{entry.desc}</p>
+  {
+    entry.url ? (
+      <a class="mono repo-m" href={entry.url} target="_blank" rel="noopener">
+        {entry.host ?? entry.url} ↗
+      </a>
+    ) : (
+      entry.host && <span class="mono repo-m">{entry.host}</span>
+    )
+  }
+</div>

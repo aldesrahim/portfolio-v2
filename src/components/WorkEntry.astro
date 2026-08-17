@@ -1,5 +1,6 @@
 ---
 import site from '../config/site';
+import Rail from './Rail.astro';
 import Slider from './Slider.astro';
 import { pad, type Project } from '../lib/projects';
 
@@ -11,26 +12,48 @@ interface Props {
 
 const { project, number } = Astro.props;
 const { data, url, images } = project;
-const stack = data.stack.join(' · ');
+
+/**
+ * Three column splits, cycled, so the featured rows never settle into one
+ * rhythm. `shotFirst` swaps the screens and the copy with CSS order, which
+ * survives the responsive spans.
+ */
+const variants = [
+  { rail: 'c3', shot: 'c5', meta: 'c4', shotFirst: true },
+  { rail: 'c3', shot: 'c5', meta: 'c4', shotFirst: false },
+  { rail: 'c2', shot: 'c6', meta: 'c4', shotFirst: true },
+];
+const v = variants[(number - 1) % variants.length]!;
 ---
 
-<section class="band work">
-  <div class="band-label">
-    <span class="entry-num">{pad(number)}</span>
-    <div>{data.year}</div>
-    <div>{data.client}</div>
-    {stack && <span class="accent">{stack}</span>}
-  </div>
-  <div class="band-content">
-    <h2><a href={url}>{data.title}</a></h2>
-    <p class="desc">{data.description}</p>
-    {
-      data.liveUrl && (
-        <a class="live-link" href={data.liveUrl} target="_blank" rel="noopener">
-          {site.project.liveLabel}
-        </a>
-      )
-    }
+<article class="row feature">
+  <Rail num={`F/${pad(number)}`} label={data.year} sub={data.client} span={v.rail} />
+
+  <div class:list={['cell', v.shot, 'shot']} style={`order:${v.shotFirst ? 2 : 3}`}>
     <Slider images={images} eager={number === 1} />
   </div>
-</section>
+
+  <div class:list={['cell', v.meta, 'fmeta']} style={`order:${v.shotFirst ? 3 : 2}`}>
+    <h3><a href={url}>{data.title}</a></h3>
+    <p>{data.description}</p>
+    {
+      data.stack.length > 0 && (
+        <ul class="mono chips">
+          {data.stack.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      )
+    }
+    <div class="links-row">
+      <a class="mono link" href={url}>{site.project.caseLabel} <span>→</span></a>
+      {
+        data.liveUrl && (
+          <a class="mono link" href={data.liveUrl} target="_blank" rel="noopener">
+            Live <span>↗</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

@@ -1,169 +1,201 @@
 # Design system — Ahmad Al Desrahim portfolio
 
-Direction: **Catalogue.** A printed reference page. One sheet on a cool grey
-desk, hairline rules, a fixed label column on the left, no shadows beyond a
-single hairline, no motion except the slider track.
+Direction: **Exposed grid.** A printed reference page drawn on a 12-column
+frame. Warm paper, hairline rules, crosshairs where the rules meet. Every
+section declares its own column spans, so the page reads as a plan sheet rather
+than a stack of bands.
 
-Implemented in `src/styles/global.css`. Tokens are CSS custom properties on
-`:root`, overridden under `[data-theme="dark"]`.
+Implemented in `src/styles/global.css`, with the crosshair painter in
+`src/layouts/Sheet.astro`. Tokens are CSS custom properties on `:root`,
+overridden under `html[data-theme="dark"]`.
+
+Source of the direction: `mockup2/` (kept for reference, excluded from the
+build).
 
 ---
 
-## Color — Nord, cool
+## Color — warm paper
 
 ### Light (default)
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--desk` | `#E5E9F0` | Page background behind the sheet |
-| `--paper` | `#FBFCFD` | Sheet background, nav background |
-| `--ink` | `#2E3440` | Headings, primary text, nav active |
-| `--ink-soft` | `#3B4252` | Body paragraphs |
-| `--muted` | `#4C566A` | Labels, meta, mono captions, footer |
-| `--rule` | `#D8DEE9` | Structural hairlines (section and column borders) |
-| `--rule-faint` | `#ECEFF4` | List-row separators inside a section |
-| `--accent` | `#5E81AC` | Link underlines, stack chips, "Available" |
+| `--paper` | `#F4F2ED` | Page background |
+| `--ink` | `#14130F` | Headings, primary text, crosshairs |
+| `--ink-2` | `#4A4740` | Body paragraphs, nav links, chips |
+| `--ink-3` | `#8D887C` | Meta terms, notes under stack items |
+| `--line` | `#C9C4B8` | Structural grid rules (cell borders) |
+| `--hair` | `#DDD9CF` | Sub-rules inside a cell (list separators) |
+| `--panel` | `#EBE8E1` | Screenshot wells, index row hover |
+| `--accent` | `#B3411F` | Section numbers, status square, link arrows |
 
 ### Dark
 
 | Token | Value |
 | --- | --- |
-| `--desk` | `#1E222A` |
-| `--paper` | `#262B35` |
-| `--ink` | `#ECEFF4` |
-| `--ink-soft` | `#D8DEE9` |
-| `--muted` | `#8A93A5` |
-| `--rule` | `#3B4252` |
-| `--rule-faint` | `#333A45` |
-| `--accent` | `#88C0D0` |
+| `--paper` | `#101010` |
+| `--ink` | `#ECE9E2` |
+| `--ink-2` | `#A9A49A` |
+| `--ink-3` | `#6D6961` |
+| `--line` | `#34322D` |
+| `--hair` | `#242220` |
+| `--panel` | `#171716` |
+| `--accent` | `#E0703F` |
 
-Rules: one accent only. Accent never fills an area — it appears as a 1px
-underline, a small text color, nothing larger. No gradients, no tints, no
-shadows other than the sheet's `--sheet-shadow` hairline.
+One accent only. It never fills an area larger than the 6px status square — it
+is a text color, an arrow, a 1px underline. No gradients, no tints, no shadows.
 
-The theme is a switch, not a media query: light is the default, the navbar
+The theme is a switch, not a media query: light is the default, the masthead
 toggle writes the choice to `localStorage`, and an inline head script applies it
 before first paint.
 
 ## Typography
 
-- **Display / body — Newsreader** (serif), weights 300–500, `--font-serif`.
-- **Labels / meta / nav — IBM Plex Mono**, 400–500, `--font-mono`.
+- **Display / body — Inter**, weights 400–500, `--font-sans`.
+- **Labels / meta / nav / lists — IBM Plex Mono**, 400–500, `--font-mono`.
 
 Both are self-hosted through Astro's font pipeline; no runtime CDN request.
 
 | Role | Size / weight | Notes |
 | --- | --- | --- |
-| H1 (name) | 76px / 300 / 1.02 | `letter-spacing: -0.02em`; 44px under 720px |
-| Lede | 21–22px / 300 / 1.5 | Max width 620px |
-| H2 (project) | 34px / 400 | `letter-spacing: -0.01em` |
-| H1 (project page) | 44px / 300 / 1.05 | |
-| H3 (OSS repo) | 26px / 400 | |
-| Body | 17–18px / 1.55–1.65 | `text-wrap: pretty` everywhere |
-| List row | 19–20px | |
-| Mono label | 11px | `letter-spacing: 0.12em`, uppercase |
-| Section header | 11px mono | `letter-spacing: 0.14em`, uppercase |
-| Entry number | 30px mono | Zero-padded: `01`, `02`, `03` |
+| H1 (name) | `clamp(44px, 6.4vw, 84px)` / 500 | `line-height: .88`, `letter-spacing: -.045em`, optical `-.055em` left hang |
+| Lede (brief) | `clamp(19px, 2.05vw, 25px)` / 1.32 | |
+| Section H2 | `clamp(28px, 3.6vw, 44px)` | `line-height: .94` |
+| Index heading (`small`) | `clamp(16px, 1.6vw, 20px)` / 400 | In `--ink-2` |
+| Feature H3 | `clamp(21px, 2.3vw, 29px)` | |
+| Project H1 | `clamp(30px, 4.2vw, 52px)` | |
+| Mailto | `clamp(26px, 3.4vw, 42px)` | Wraps at `{split}` in the config |
+| Body / description | 13–15px / 1.5–1.65 | `--ink-2` |
+| Mono label | 11px | `letter-spacing: .09em`, uppercase |
+| Stack note, card meta | 10px mono | `--ink-3` |
 
-Measure caps at `--measure` (600px) regardless of column width.
+Uppercase is for mono only. The sans is never uppercased.
 
-## Layout
+## Layout — the frame
 
-- Sheet: `--sheet-width: 1040px`, 1px `--rule` border, centered, 48px desk
-  padding.
-- **The spine:** every content band is
-  `grid-template-columns: var(--label-column) 1fr` (200px). The 200px column
-  holds the mono label (or entry number + metadata) and carries a 1px right
-  border that runs the full height of the band. This vertical rule is the page's
-  single strongest structural device — never break it.
-- Band padding: `34–56px` top/bottom, `40px` (`--gutter`) left/right in the
-  content column; the label column pads `24px 24px 24px 40px`.
-- Every band closes with `border-bottom: 1px solid var(--rule)`.
-- Section headers are their own full-width band: 18px padding, label left,
-  a mono counter right (`04 of 12`, `github.com/aldesrahim`).
+- `.frame`: `max-width: 1280px`, centered, with **only** a top and a left rule.
+- `.row`: `grid-template-columns: repeat(12, 1fr)`.
+- `.cell`: `padding: var(--pad)` (24px, 20px, then 18px), plus its **own** right
+  and bottom rule. Lines therefore stop and start with the boxes instead of
+  running the full page height — that is the whole device.
+- Spans are `.c1` … `.c12`. Every row must add up to 12, or the row leaves a gap
+  where the frame's right edge should be. `src/pages/index.astro` computes the
+  stack and OSS spans from the config length and gives the last cell the
+  remainder for exactly this reason.
+- Vertical rhythm is per-section padding on `.cell`, not a global scale:
+  masthead/footer 13px, hero 48px, brief 38px, section heads 32px, features
+  28px, stack 26/30px, contact 44px.
 
-### Under 720px
+### Crosshairs
 
-The sheet loses its border, margin, and shadow and runs full-bleed. The spine
-collapses: every band becomes one column, and the label column turns into a
-horizontal meta strip above the content with the accent item pushed to the right
-edge. The navbar wraps — brand and theme toggle on row one, links on row two.
-Work descriptions are hidden on the index; the project page carries them.
+`Sheet.astro` measures every `.cell` after layout, collects the four corners,
+dedupes them, and drops a 13px `+` at each. Because the marks come from the
+cells, they land wherever rules actually meet — no fixed line positions. Repaint
+runs on resize (debounced 60ms), on `load`, on `document.fonts.ready`, on a
+`ResizeObserver` over the frame, and on any image `load` in the capture phase.
+
+The measurement steps back one pixel from each rounded edge, because a 1px
+border paints on the pixel *before* the box edge and 12 fractional columns put
+those edges on subpixels.
+
+### Rails
+
+The left cell of most rows is a `.rail`: accent section number, mono label,
+optional dimmer sub-label. Numbers are the page's running order — `01` Name,
+`02` Brief, `03` Tech Stack, `04` Work, `04b` Other Work, `05` OSS, `06`
+Contact — and featured rows number themselves `F/01`, `F/02`, …
+
+### Under 1100px
+
+Stack groups and OSS cards drop to 6 columns (an odd last card takes 12, so the
+row still closes). The feature rail becomes a full-width strip and the row
+splits 7 / 5 between screens and copy.
+
+### Under 820px
+
+The frame loses its border and padding and runs full-bleed, cells lose their
+right rule, every cell spans 12, and the crosshairs are switched off — with no
+vertical rules left there is nothing for them to mark. Rails lay out
+horizontally. The project gallery relaxes from 12/5 to 4/3.
 
 ## Components
 
-**Navbar** — sticky, 14px padding, mono 11px uppercase. Name left, links right
-at 26px gap, then a hairline divider and the theme toggle. Active link: `ink` +
-1px `accent` underline; rest `muted`.
+**Masthead** — one 12-column cell: brand left, mono nav right, then the theme
+toggle. Not sticky: a sticky bar inside the frame would drift away from the
+crosshair layer, which is measured once per layout.
 
-The active link follows the URL hash, not the scroll position: clicking a link
-(or landing on `/#oss`) underlines that one and nothing else. Without a hash the
-server-rendered link stays underlined. Section bands carry
-`scroll-margin-top: var(--nav-h)` so an anchor jump parks the header just below
-the bar instead of under it.
+The active link follows the URL hash, not scroll position. Section header rows
+carry a small `scroll-margin-top` so an anchor jump does not clip the rail.
 
-A scrollspy was tried and dropped. The last two sections together are shorter
-than a viewport, so the page bottoms out before their headers reach the navbar —
-the underline skipped Open source and sat on Contact. A hash that only changes
-when the reader asks it to suits a printed page better than one that drifts.
+**Theme toggle** — mono 11px in a 1px `--line` box with a 7px accent square
+before the label. The square fills in dark mode. There are no circles in this
+system, and no rounded corners anywhere (`border-radius: 0 !important` in the
+reset).
 
-**Theme toggle** — mono 11px in a 1px `rule` box, with a 7px ring before the
-label. The ring fills with `accent` in dark mode. The only circle in the system.
+**Hero (01)** — rail / name / meta list at 3 / 5 / 4. The meta is a mono `dl`
+on a 78px term column: Role, Based, Since, Status. Status carries the accent
+square.
 
-**Hero** — label column is an "Index": location, timezone, since, status.
-Status reads in `accent`.
+**Brief (02)** — rail / two paragraphs / figures panel at 3 / 6 / 3. The figures
+are counted from the content at build time, never typed by hand: projects,
+featured, open source, years.
 
-**Work entry** — label column: number, year, client, then stack in `accent`.
-Content: title linking to the project page, one-sentence description, optional
-live link, then the gallery slider. The title carries the link hairline in
-`rule` plus a small mono `→` in `muted`, both turning `accent` on hover — a
-34px serif heading otherwise reads as a heading, not a way in.
+**Tech stack (03)** — header row, then one cell per group. Each item is a mono
+row with a hairline above it and an optional 10px uppercase note under the name.
 
-**Slider** — a 1px `rule` frame with 6px inset padding (a print mat) around a
-16/9 window. Slides are full-width and scroll vertically inside the window, so
-tall screenshots stay readable. Below: a mono `01 / 15` counter left, `Prev` /
-`Next` right, underlined in `rule`. Autoplays every 4s, pauses on hover or
-focus. The single exception to "no motion": a 0.3s track translate.
+**Featured work (04)** — one `.row.feature` per project, cycling three column
+splits (3/5/4, 3/5/4 reversed, 2/6/4) so the rows never settle into a pattern.
+The screens cell has zero padding and holds the slider; the copy cell holds
+title, one sentence, stack chips and links. The reversal is done with CSS
+`order`, which survives the responsive spans.
 
-**Also built** — name left, year right, rows separated by `rule-faint`. Names
-are links but carry no underline: the row separators already draw that line, and
-a second hairline under each name would double the weight of the seam.
+**Slider** — a `--panel` well with an aspect-ratio window (8/5 in a feature row,
+12/5 on a project page) and a mono control bar under it: `01 / 15` left, `Prev`
+/ `Next` right. Slides are full width and scroll vertically, so tall
+screenshots stay readable. Autoplays every 4s, pauses on hover or focus. The
+single exception to "no motion": a 0.3s track translate.
 
-**OSS entry** — a bordered `REPO` chip in the label column; title, description,
-repo link. Entries without a `url` render no link line.
+**Other work (04b)** — a small header row, then two 6-column index columns
+reading down the left first. Each line is `year / title / stack` on a
+`54px 1fr auto` grid, hairline-separated, `--panel` on hover.
 
-**Contact** — statement, then a link table: label right in mono, target left at
-20px. Hairline `rule-faint` between rows.
+**OSS (05)** — header row, then one card per entry. Card: name and `REPO` tag
+over a hairline, description, then the host line as the link. The description
+pushes the meta to the bottom (`margin-bottom: auto`), so cards of different
+lengths still align their last line.
 
-**Footer** — one mono band, three items spread across the width.
+**Contact (06)** — rail / large mailto / channels at 3 / 5 / 4. The address
+wraps where the config puts `{split}`.
 
-**Project page** — back band, detail band (entry number, year, client, stack /
-title, lede, live and repo links), gallery band, then an About band holding the
-rendered markdown body. Markdown gets the full `.body-copy` treatment:
-hairline tables, mono code, `rule`-bordered pre blocks and images.
+**Footer** — two 6-column cells, dim mono, right cell right-aligned.
+
+**Project page** — back row, detail row (rail / title + lede / chips + links),
+a full-width gallery row, then an About row (rail / rendered markdown at 9
+columns, measure capped at 62ch).
 
 ## Links
 
-Default `ink`, hover `accent`. Inline links carry a 1px underline —
-`accent` for primary, `rule` for secondary — with 3px padding beneath.
-External links end with ` ↗`. Focus is a 1px `accent` outline at 2px offset.
+Default `--ink`, hover `--accent`. `.link` carries a 1px underline and an accent
+arrow in a `<span>`. Nav links use a transparent bottom border that turns accent
+on hover, so nothing shifts. Focus is a 1px accent outline at 2px offset.
 
 ## Rules of the system
 
-1. No motion, except the slider track. No hover transforms, no scroll reveals.
-2. No filled buttons. A link is an underline.
-3. No rounded corners anywhere — the theme-toggle ring is the one circle.
-4. Borders are 1px, always, in `rule` or `rule-faint` — never both weights
-   in the same seam.
-5. Uppercase is for mono only; the serif is never uppercased.
-6. Never invent project metadata. A field with no source is omitted, not
-   filled — the schema in `src/content.config.ts` makes the optional fields
-   optional for this reason.
+1. Rules belong to cells, never to the page. Never draw a full-height divider.
+2. Every row adds up to 12 columns.
+3. No motion, except the slider track. No hover transforms, no scroll reveals.
+4. No filled buttons. A link is an underline.
+5. No rounded corners, no shadows, no gradients.
+6. Borders are 1px, in `--line` (structure) or `--hair` (inside a cell) — never
+   both weights in the same seam.
+7. Uppercase is for mono only.
+8. Never invent project metadata or figures. Counts in copy come from
+   `{tokens}` filled at build time; a field with no source is omitted.
 
 ## Open content items
 
-- Hero lede and the contact statement are draft copy awaiting the owner's
-  wording (`src/config/site.ts`).
-- Hero index says Lisbon / UTC+1 / Since 2016 — placeholders from the mockup.
-- Contact targets (email, LinkedIn) are placeholders.
-- Stack rows exist in the config but the band is off (`showStack: false`).
+- The contact note is still draft copy awaiting the owner's wording
+  (`src/config/site.ts`).
+- Stack notes ("primary", "browser · node", "ci · builds") are the owner's to
+  confirm; items themselves come from the project files and the OSS entries.
+- Hero meta (role, location, since) carries over from the previous build.

@@ -1,6 +1,9 @@
 /**
  * Site configuration — every piece of copy and metadata outside the project
  * markdown files lives here. Nothing else needs editing to rebrand the site.
+ *
+ * Values may carry tokens that are filled at render time (see `src/lib/tokens.ts`):
+ * `{year}` `{years}` `{projects}` `{featured}` `{oss}`.
  */
 
 export interface NavLink {
@@ -11,17 +14,29 @@ export interface NavLink {
   id?: string;
 }
 
-export interface IndexRow {
-  text: string;
-  /** Render in the accent colour (used for the status line). */
+/** One row of the hero definition list: term on the left, value on the right. */
+export interface MetaRow {
+  term: string;
+  value: string;
+  /** Render with the accent square in front (used for the status line). */
   accent?: boolean;
 }
 
-export interface ContactLink {
+/** One row of the figures panel in the Brief section. */
+export interface Fact {
   label: string;
-  /** Text shown on the row. */
-  target: string;
-  href: string;
+  value: string;
+}
+
+export interface StackItem {
+  name: string;
+  /** Small uppercase note under the name. Omit when there is nothing true to say. */
+  note?: string;
+}
+
+export interface StackGroup {
+  title: string;
+  items: StackItem[];
 }
 
 export interface OssEntry {
@@ -30,30 +45,59 @@ export interface OssEntry {
   /** Text of the link line. Omit `url` to render no link. */
   host?: string;
   url?: string;
-  /** Chip in the label column. */
+  /** Chip beside the repo name. */
   tag: string;
 }
 
-export interface StackRow {
+/** A row in the contact channel list. */
+export interface ContactChannel {
   label: string;
-  items: string;
+  /** Text shown on the row. */
+  target: string;
+  href: string;
 }
 
 export interface SectionMeta {
-  /** Mono label on the left of the section header band. */
+  /** Mono number in the rail: "01", "04b". */
+  num: string;
+  /** Mono label under the number. */
   label: string;
-  /** Label column of the band under the header. */
-  bandLabel?: string;
-  /** Mono text on the right of the header band. Omit to leave it blank. */
-  counter?: string;
+  /** Display heading beside the rail. `<br>` allowed. */
+  heading?: string;
+  /** Small mono paragraph in the last cell of the header row. */
+  note?: string;
 }
 
-/** Section headers. Work and "Also built" count themselves when no counter is set. */
-const sections: Record<'work' | 'built' | 'oss' | 'contact', SectionMeta> = {
-  work: { label: 'Work' },
-  built: { label: 'Also built', bandLabel: 'More projects' },
-  oss: { label: 'Open source', counter: 'github.com/aldesrahim' },
-  contact: { label: 'Get In Touch', bandLabel: 'Contact' },
+/** Section rails. The number is the page's running order, not a count. */
+const sections: Record<
+  'name' | 'brief' | 'stack' | 'work' | 'other' | 'oss' | 'contact',
+  SectionMeta
+> = {
+  name: { num: '01', label: 'Name' },
+  brief: { num: '02', label: 'Brief' },
+  stack: {
+    num: '03',
+    label: 'Tech Stack',
+    heading: 'Tools I reach for<br>without thinking',
+  },
+  work: {
+    num: '04',
+    label: 'Work',
+    heading: 'Selected<br>Projects',
+    note: '{featured} featured below, with screens. The rest are filed in the index — client work and internal systems, most of them not public.',
+  },
+  other: {
+    num: '04b',
+    label: 'Other Work',
+    heading: 'The rest of the index — {other} entries, 2020 to now.',
+  },
+  oss: {
+    num: '05',
+    label: 'OSS',
+    heading: 'Open<br>Source',
+    note: 'Packages and data sets I maintain in the open — github.com/aldesrahim',
+  },
+  contact: { num: '06', label: 'Contact' },
 };
 
 export const site = {
@@ -70,60 +114,86 @@ export const site = {
   description:
     'Portfolio of Ahmad Al Desrahim — Laravel and PHP developer, provide reliable solutions to fulfill all your digital needs.',
 
+  /** First working year. Feeds the `{years}` token. */
+  since: 2020,
+
   /** "light" | "dark" — used before the visitor picks one. */
   defaultTheme: 'light' as 'light' | 'dark',
 
   nav: {
-    /** Mono brand text at the left of the navbar. */
+    /** Mono brand text at the left of the masthead. */
     brand: 'Ahmad Al Desrahim',
     links: [
+      { label: 'Stack', href: '/#stack', id: 'stack' },
       { label: 'Work', href: '/#work', id: 'work' },
-      { label: 'Also built', href: '/#built', id: 'built' },
       { label: 'OSS', href: '/#oss', id: 'oss' },
       { label: 'Contact', href: '/#contact', id: 'contact' },
     ] satisfies NavLink[],
     themeLabel: 'Theme',
   },
 
+  /** 01 — the name cell and the metadata beside it. */
   hero: {
-    /** Label column of the hero band. */
-    indexLabel: 'Index',
-    index: [
-      { text: 'Jakarta, ID' },
-      { text: 'UTC+7' },
-      { text: 'Since 2020' },
-      { text: 'Available', accent: true },
-    ] satisfies IndexRow[],
-    heading: 'Ahmad Al Desrahim',
-    /** Paragraph under the name. Inline HTML is allowed. */
-    lede:
-      'I built and maintain backend systems that keep running 24/7, from APIs, databases and infra underneath.<br><br>Mostly working on private/internal applications that are not allowed to be shared.<br><br>I love working using Laravel and it\'s ecosystems, but eager to expand on other stacks.',
+    /** `<br>` splits the display name across lines. */
+    heading: 'Ahmad Al<br>Desrahim',
+    meta: [
+      { term: 'Role', value: 'Backend & product engineer' },
+      { term: 'Based', value: 'Jakarta, ID · UTC+7' },
+      { term: 'Since', value: '2020 — {years} yrs' },
+      { term: 'Status', value: 'Available', accent: true },
+    ] satisfies MetaRow[],
+  },
+
+  /** 02 — the paragraph and the figures panel beside it. */
+  brief: {
+    lede: 'I build and maintain backend systems that keep running 24/7 — the APIs, databases and infrastructure underneath.',
+    sub: 'Mostly private and internal applications that are not allowed to be shared. I like working in Laravel and its ecosystem, and I am eager to widen the stack.',
+    facts: [
+      { label: 'Projects filed', value: '{projects}' },
+      { label: 'Featured', value: '{featured}' },
+      { label: 'Open source', value: '{oss}' },
+      { label: 'Years shipping', value: '{years}' },
+    ] satisfies Fact[],
   },
 
   sections,
 
-  /** Shown on a project page, above the detail band. */
+  /** Shown on a project page. */
   project: {
     backLabel: '← Back to work',
     galleryLabel: 'Gallery',
     aboutLabel: 'About',
     liveLabel: 'Live ↗',
     repoLabel: 'Repository ↗',
+    caseLabel: 'View project',
     emptyGallery: 'No gallery',
   },
 
   contact: {
-    statement:
-      'A short statement inviting a conversation about a project, a role, or a good book.',
-    links: [
+    /** The large mailto. `{split}` marks where the address wraps. */
+    email: 'hi@{split}aldes.dev',
+    emailHref: 'mailto:hi@aldes.dev',
+    channels: [
+      { label: 'GitHub', target: '@aldesrahim ↗', href: 'https://github.com/aldesrahim' },
+      {
+        label: 'LinkedIn',
+        target: 'in/aldesrahim ↗',
+        href: 'https://linkedin.com/in/aldesrahim',
+      },
       { label: 'Email', target: 'hi@aldes.dev', href: 'mailto:hi@aldes.dev' },
-      { label: 'GitHub', target: 'github.com/aldesrahim', href: 'https://github.com/aldesrahim' },
-      { label: 'LinkedIn', target: 'linkedin.com/in/aldesrahim', href: 'https://linkedin.com/in/aldesrahim' },
-    ] satisfies ContactLink[],
+    ] satisfies ContactChannel[],
+    note: 'A short statement inviting a conversation about a project, a role, or a good book.',
   },
 
-  /** Open source band. Entries without a `url` render no link line. */
+  /** Open source cards. Entries without a `url` render no link line. */
   oss: [
+    {
+      name: 'Timezone Indonesia',
+      desc: 'A Laravel package that turns a coordinate into an Indonesian IANA timezone, offline. The four boundary polygons ship with it — no API, no database, no call at runtime.',
+      host: 'github.com/aldesrahim/laravel-timezone-indonesia',
+      url: 'https://github.com/aldesrahim/laravel-timezone-indonesia',
+      tag: 'Package',
+    },
     {
       name: 'Wilayah Indonesia',
       desc: 'Provinces, cities, districts, and villages of Indonesia. GitHub Actions builds the data from BPS sources and publishes it as JSON.',
@@ -136,7 +206,7 @@ export const site = {
       desc: 'Filament v5 documentation, written for LLMs and AI-assisted development.',
       host: 'github.com/aldesrahim/filament-compass-pkg',
       url: 'https://github.com/aldesrahim/filament-compass-pkg',
-      tag: 'Repo',
+      tag: 'Package',
     },
     {
       name: 'Localdev',
@@ -147,18 +217,43 @@ export const site = {
     },
   ] satisfies OssEntry[],
 
-  /** Tooling summary. Set `showStack` to false to drop the band. */
-  showStack: false,
+  /** Tooling columns. Set `showStack` to false to drop the section. */
+  showStack: true,
   stack: [
-    { label: 'Languages', items: 'PHP · JavaScript · Go' },
-    { label: 'Framework', items: 'Laravel' },
-    { label: 'Data & cache', items: 'MySQL · Redis' },
-    { label: 'Infra & ops', items: 'Linux · Docker' },
-  ] satisfies StackRow[],
+    {
+      title: 'Languages',
+      items: [
+        { name: 'PHP', note: 'primary' },
+        { name: 'JavaScript', note: 'browser · node' },
+        { name: 'Go' },
+      ],
+    },
+    {
+      title: 'Framework',
+      items: [
+        { name: 'Laravel', note: 'most projects' },
+        { name: 'Livewire' },
+        { name: 'FilamentPHP' },
+        { name: 'NuxtJS' },
+      ],
+    },
+    {
+      title: 'Data & cache',
+      items: [{ name: 'MySQL' }, { name: 'Redis', note: 'cache · queues' }],
+    },
+    {
+      title: 'Infra & ops',
+      items: [
+        { name: 'Linux' },
+        { name: 'Docker' },
+        { name: 'GitHub Actions', note: 'ci · builds' },
+      ],
+    },
+  ] satisfies StackGroup[],
 
   footer: {
-    /** `{year}` is replaced with the current year. */
-    items: ['© {year} Ahmad Al Desrahim', 'Astro · IBM Plex Mono', 'Built with Care'],
+    left: '© {year} Ahmad Al Desrahim',
+    right: 'Jakarta · Astro · Built with care',
   },
 
   gallery: {

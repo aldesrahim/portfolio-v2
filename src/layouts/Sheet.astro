@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
     <meta name="generator" content={Astro.generator} />
-    <Font cssVariable="--font-serif" preload />
+    <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-mono" preload />
     <script is:inline define:vars={{ fallback: site.defaultTheme }}>
       // Set the theme before first paint so the sheet never flashes.
@@ -43,10 +43,67 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
     </script>
   </head>
   <body>
-    <div class="sheet">
+    <div class="frame" id="frame">
+      <div class="crosshairs" id="crosshairs" aria-hidden="true"></div>
       <Nav active={active} />
       <slot />
       <Footer />
     </div>
+
+    <script>
+      /* Crosshairs are derived from the cells themselves: collect every cell
+         corner, dedupe, drop a "+" there. Because the grid is per-section, the
+         marks land wherever rules actually meet — no fixed line positions. */
+      const frame = document.getElementById('frame');
+      const layer = document.getElementById('crosshairs');
+
+      function paint() {
+        if (!frame || !layer) return;
+        const box = frame.getBoundingClientRect();
+        /* The layer is inset:0, so its origin is the frame's padding box — step
+           past the frame's own top/left border before measuring. */
+        const base = { left: box.left + frame.clientLeft, top: box.top + frame.clientTop };
+        const seen = new Set<string>();
+        let html = '';
+
+        for (const cell of frame.querySelectorAll('.cell')) {
+          const r = cell.getBoundingClientRect();
+          if (!r.width || !r.height) continue;
+
+          /* A 1px border paints on the pixel *before* the box edge, i.e.
+             [edge - 1, edge). Round first — 12 fractional columns put the edges
+             on subpixels — then step back one to sit on the rule. */
+          const xs = [
+            Math.round(r.left - base.left) - 1,
+            Math.round(r.right - base.left) - 1,
+          ];
+          const ys = [Math.round(r.top - base.top) - 1, Math.round(r.bottom - base.top) - 1];
+
+          for (const x of xs) {
+            for (const y of ys) {
+              const key = `${x}:${y}`;
+              if (seen.has(key)) continue;
+              seen.add(key);
+              html += `<i class="x" style="left:${x}px;top:${y}px"></i>`;
+            }
+          }
+        }
+        layer.innerHTML = html;
+      }
+
+      let timer = 0;
+      function schedule() {
+        clearTimeout(timer);
+        timer = window.setTimeout(paint, 60);
+      }
+
+      paint();
+      window.addEventListener('resize', schedule);
+      window.addEventListener('load', paint);
+      if (document.fonts) document.fonts.ready.then(paint);
+      if (window.ResizeObserver && frame) new ResizeObserver(schedule).observe(frame);
+      /* Lazy screenshots settle after the first paint. */
+      document.addEventListener('load', schedule, true);
+    </script>
   </body>
 </html>

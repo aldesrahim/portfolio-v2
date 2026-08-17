@@ -1,10 +1,11 @@
 ---
 import site from '../config/site';
+import { getCounts, fill } from '../lib/tokens';
 
-const year = String(new Date().getFullYear());
-const items = site.footer.items.map((item) => item.replace('{year}', year));
+const counts = await getCounts();
 ---
 
-<footer>
-  {items.map((item) => <span>{item}</span>)}
+<footer class="row foot">
+  <div class="cell c6"><span class="mono lbl faint">{fill(site.footer.left, counts)}</span></div>
+  <div class="cell c6"><span class="mono lbl faint">{fill(site.footer.right, counts)}</span></div>
 </footer>

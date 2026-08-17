@@ -8,12 +8,12 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Newsreader',
-      cssVariable: '--font-serif',
-      weights: [300, 400, 500],
+      name: 'Inter',
+      cssVariable: '--font-sans',
+      weights: [400, 500],
       styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['Georgia', 'serif'],
+      fallbacks: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
     },
     {
       provider: fontProviders.google(),

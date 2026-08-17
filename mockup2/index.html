@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aldes Rahim — Backend Engineer</title>
+<meta name="description" content="Portfolio of Aldes Rahim, backend engineer working on distributed systems, payments infrastructure and developer tooling.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!--
+  12-column exposed grid. Every section declares its own spans, so the
+  rules are drawn by the cells themselves (border-right + border-bottom)
+  rather than by fixed full-height lines. Crosshairs are painted at the
+  deduped corners of every cell.
+-->
+
+<div class="frame" id="frame">
+
+  <div class="crosshairs" id="crosshairs" aria-hidden="true"></div>
+
+  <!-- ═══ MASTHEAD ═══ 3 / 4 / 5 -->
+  <header class="row masthead">
+    <div class="cell c12">
+      <nav class="mono nav">
+        <a href="#stack">Stack</a>
+        <a href="#work">Work</a>
+        <a href="#oss">OSS</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══ 01 — NAME ═══ 3 / 5 / 4 -->
+  <section class="row hero">
+    <div class="cell c3 rail">
+      <span class="mono num">01</span>
+      <span class="mono lbl">Name</span>
+    </div>
+    <div class="cell c5 hero-name">
+      <h1>Aldes<br>Rahim</h1>
+    </div>
+    <div class="cell c4 hero-meta">
+      <dl class="mono meta">
+        <dt>Role</dt><dd>Backend Engineer</dd>
+        <dt>Based</dt><dd>Jakarta, ID · UTC+7</dd>
+        <dt>Since</dt><dd>2016 — 9 yrs</dd>
+        <dt>Status</dt><dd><span class="dot"></span>Open to contract</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═══ 02 — BRIEF ═══ 3 / 6 / 3 -->
+  <section class="row brief">
+    <div class="cell c3 rail">
+      <span class="mono num">02</span>
+      <span class="mono lbl">Brief</span>
+    </div>
+    <div class="cell c6 brief-body">
+      <p class="lede">
+        I build the parts of a product nobody sees and everybody feels — payment
+        ledgers, job queues, and the APIs that hold them together. Ten years of
+        work reduced to one preference: systems that stay boring under load.
+      </p>
+      <p class="sub">
+        Currently leading platform engineering at a regional fintech, moving a
+        monolith to event-driven services without stopping the money.
+      </p>
+    </div>
+    <div class="cell c3 brief-side">
+      <ul class="mono facts">
+        <li><span>Uptime owned</span><b>99.98%</b></li>
+        <li><span>Peak throughput</span><b>41k rps</b></li>
+        <li><span>Services shipped</span><b>23</b></li>
+        <li><span>Pager weeks</span><b>too many</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 03 — TECH STACK ═══ head 3 / 9, then 4 × 3 -->
+  <section class="row sec-head" id="stack">
+    <div class="cell c3 rail">
+      <span class="mono num">03</span>
+      <span class="mono lbl">Tech Stack</span>
+    </div>
+    <div class="cell c9 head-wide">
+      <h2>Tools I reach for<br>without thinking</h2>
+    </div>
+  </section>
+
+  <section class="row stack">
+    <div class="cell c3 stack-group">
+      <h4 class="mono">Languages</h4>
+      <ul class="mono list">
+        <li>Go<i>primary</i></li>
+        <li>PHP · Laravel<i>7 yrs</i></li>
+        <li>TypeScript<i>node · bun</i></li>
+        <li>Rust<i>tooling</i></li>
+        <li>SQL<i>daily</i></li>
+      </ul>
+    </div>
+    <div class="cell c3 stack-group">
+      <h4 class="mono">Data</h4>
+      <ul class="mono list">
+        <li>PostgreSQL<i>15 / 16</i></li>
+        <li>Redis<i>cache · locks</i></li>
+        <li>ClickHouse<i>analytics</i></li>
+        <li>Kafka<i>event bus</i></li>
+        <li>S3 · MinIO<i>objects</i></li>
+      </ul>
+    </div>
+    <div class="cell c3 stack-group">
+      <h4 class="mono">Platform</h4>
+      <ul class="mono list">
+        <li>Kubernetes<i>EKS</i></li>
+        <li>Terraform<i>IaC</i></li>
+        <li>Docker<i>everywhere</i></li>
+        <li>GitHub Actions<i>CI/CD</i></li>
+        <li>Cloudflare<i>edge</i></li>
+      </ul>
+    </div>
+    <div class="cell c3 stack-group">
+      <h4 class="mono">Observe</h4>
+      <ul class="mono list">
+        <li>OpenTelemetry<i>traces</i></li>
+        <li>Prometheus<i>metrics</i></li>
+        <li>Grafana<i>boards</i></li>
+        <li>Loki<i>logs</i></li>
+        <li>Sentry<i>errors</i></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 04 — WORK ═══ head 3 / 5 / 4 -->
+  <section class="row sec-head" id="work">
+    <div class="cell c3 rail">
+      <span class="mono num">04</span>
+      <span class="mono lbl">Work</span>
+    </div>
+    <div class="cell c5">
+      <h2>Selected<br>Projects</h2>
+    </div>
+    <div class="cell c4">
+      <p class="mono note">
+        Three featured below. Everything else is filed in the index —
+        client work, internal platforms, and things that quietly still run.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured 01 — 3 / 5 / 4 -->
+  <article class="row feature">
+    <div class="cell c3 rail">
+      <span class="mono num">F/01</span>
+      <span class="mono lbl">2024 — 25</span>
+      <span class="mono lbl faint">Lead</span>
+    </div>
+    <div class="cell c5 shot">
+      <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ledger throughput diagram">
+        <rect width="640" height="400" class="sv-bg"/>
+        <g class="sv-hair"><path d="M0 100H640M0 200H640M0 300H640M160 0V400M320 0V400M480 0V400"/></g>
+        <g class="sv-ink">
+          <path d="M40 320 L100 300 L160 310 L220 240 L280 250 L340 180 L400 195 L460 120 L520 130 L600 60" fill="none" stroke-width="2"/>
+          <circle cx="340" cy="180" r="4"/><circle cx="600" cy="60" r="4"/>
+        </g>
+        <g class="sv-bar">
+          <rect x="40" y="340" width="18" height="40"/><rect x="76" y="326" width="18" height="54"/>
+          <rect x="112" y="348" width="18" height="32"/><rect x="148" y="312" width="18" height="68"/>
+          <rect x="184" y="334" width="18" height="46"/><rect x="220" y="300" width="18" height="80"/>
+          <rect x="256" y="322" width="18" height="58"/><rect x="292" y="288" width="18" height="92"/>
+        </g>
+        <g class="sv-lbl"><text x="40" y="42">LEDGER v3</text><text x="470" y="42">41,208 RPS</text></g>
+      </svg>
+    </div>
+    <div class="cell c4 fmeta">
+      <h3>Ledger v3</h3>
+      <p>
+        Double-entry ledger rebuilt as an append-only event log. Replaced nightly
+        batch reconciliation with streaming balances — settlement lag went from
+        6 hours to under 900ms.
+      </p>
+      <ul class="mono chips"><li>Go</li><li>Kafka</li><li>Postgres</li><li>gRPC</li></ul>
+      <a class="mono link" href="#">Case study <span>↗</span></a>
+    </div>
+  </article>
+
+  <!-- Featured 02 — 3 / 4 / 5, image on the right -->
+  <article class="row feature">
+    <div class="cell c3 rail">
+      <span class="mono num">F/02</span>
+      <span class="mono lbl">2023</span>
+      <span class="mono lbl faint">Architect</span>
+    </div>
+    <div class="cell c4 fmeta">
+      <h3>Split — Monolith Decomposition</h3>
+      <p>
+        Strangler-fig migration of a 700k-line PHP monolith. Traffic shifted
+        service by service behind a routing proxy, with zero scheduled downtime
+        across fourteen months.
+      </p>
+      <ul class="mono chips"><li>PHP</li><li>Go</li><li>Envoy</li><li>K8s</li></ul>
+      <a class="mono link" href="#">Case study <span>↗</span></a>
+    </div>
+    <div class="cell c5 shot">
+      <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Service topology map">
+        <rect width="640" height="400" class="sv-bg"/>
+        <g class="sv-hair"><path d="M0 133H640M0 266H640M213 0V400M426 0V400"/></g>
+        <g class="sv-ink" fill="none" stroke-width="1.5">
+          <path d="M107 200 H213 M213 200 V67 H320 M213 200 V333 H320 M320 67 H426 M320 333 H426 M426 67 V200 H533 M426 333 V200 H533"/>
+        </g>
+        <g class="sv-node">
+          <rect x="82" y="175" width="50" height="50"/><rect x="295" y="42" width="50" height="50"/>
+          <rect x="295" y="308" width="50" height="50"/><rect x="401" y="42" width="50" height="50"/>
+          <rect x="401" y="308" width="50" height="50"/><rect x="508" y="175" width="50" height="50"/>
+        </g>
+        <g class="sv-lbl"><text x="40" y="42">TOPOLOGY</text><text x="490" y="380">6 SERVICES</text></g>
+      </svg>
+    </div>
+  </article>
+
+  <!-- Featured 03 — 2 / 6 / 4 -->
+  <article class="row feature">
+    <div class="cell c2 rail">
+      <span class="mono num">F/03</span>
+      <span class="mono lbl">2022</span>
+      <span class="mono lbl faint">Solo</span>
+    </div>
+    <div class="cell c6 shot">
+      <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Queue density matrix">
+        <rect width="640" height="400" class="sv-bg"/>
+        <g class="sv-dot">
+          <circle cx="60" cy="80" r="3"/><circle cx="100" cy="80" r="5"/><circle cx="140" cy="80" r="7"/><circle cx="180" cy="80" r="9"/><circle cx="220" cy="80" r="7"/><circle cx="260" cy="80" r="5"/><circle cx="300" cy="80" r="3"/><circle cx="340" cy="80" r="2"/>
+          <circle cx="60" cy="140" r="5"/><circle cx="100" cy="140" r="8"/><circle cx="140" cy="140" r="11"/><circle cx="180" cy="140" r="13"/><circle cx="220" cy="140" r="10"/><circle cx="260" cy="140" r="7"/><circle cx="300" cy="140" r="4"/><circle cx="340" cy="140" r="3"/>
+          <circle cx="60" cy="200" r="7"/><circle cx="100" cy="200" r="11"/><circle cx="140" cy="200" r="15"/><circle cx="180" cy="200" r="18"/><circle cx="220" cy="200" r="13"/><circle cx="260" cy="200" r="9"/><circle cx="300" cy="200" r="5"/><circle cx="340" cy="200" r="3"/>
+          <circle cx="60" cy="260" r="5"/><circle cx="100" cy="260" r="8"/><circle cx="140" cy="260" r="11"/><circle cx="180" cy="260" r="12"/><circle cx="220" cy="260" r="9"/><circle cx="260" cy="260" r="6"/><circle cx="300" cy="260" r="4"/><circle cx="340" cy="260" r="2"/>
+          <circle cx="60" cy="320" r="3"/><circle cx="100" cy="320" r="4"/><circle cx="140" cy="320" r="6"/><circle cx="180" cy="320" r="7"/><circle cx="220" cy="320" r="5"/><circle cx="260" cy="320" r="4"/><circle cx="300" cy="320" r="3"/><circle cx="340" cy="320" r="2"/>
+        </g>
+        <g class="sv-hair"><path d="M400 40V360M400 40H600M400 360H600"/></g>
+        <g class="sv-lbl">
+          <text x="420" y="80">P50   12ms</text><text x="420" y="120">P95   84ms</text>
+          <text x="420" y="160">P99  210ms</text><text x="420" y="320">QUEUE DEPTH</text>
+        </g>
+      </svg>
+    </div>
+    <div class="cell c4 fmeta">
+      <h3>Relay — Job Scheduler</h3>
+      <p>
+        A priority job runner with exactly-once semantics on top of Postgres
+        advisory locks. Powers 4M background tasks a day; the retry logic has
+        not been touched since launch.
+      </p>
+      <ul class="mono chips"><li>Go</li><li>Postgres</li><li>Redis</li><li>OTel</li></ul>
+      <a class="mono link" href="#">Case study <span>↗</span></a>
+    </div>
+  </article>
+
+  <!-- Other work — head 3 / 9, then two 6-col index columns -->
+  <section class="row sec-head">
+    <div class="cell c3 rail">
+      <span class="mono num">04b</span>
+      <span class="mono lbl">Other Work</span>
+    </div>
+    <div class="cell c9 head-wide small">
+      <h3 class="idx-title">The rest of the index — 14 entries, 2017 to now.</h3>
+    </div>
+  </section>
+
+  <section class="row otherwork">
+    <div class="cell c6 index-col">
+      <ol class="index mono">
+        <li><span class="ix-y">2025</span><span class="ix-n">Gateway rate limiter</span><span class="ix-t">Go</span></li>
+        <li><span class="ix-y">2024</span><span class="ix-n">KYC document pipeline</span><span class="ix-t">Go · S3</span></li>
+        <li><span class="ix-y">2024</span><span class="ix-n">Feature flag service</span><span class="ix-t">TS</span></li>
+        <li><span class="ix-y">2023</span><span class="ix-n">Merchant payout API</span><span class="ix-t">Laravel</span></li>
+        <li><span class="ix-y">2023</span><span class="ix-n">Realtime fraud rules engine</span><span class="ix-t">Go · Kafka</span></li>
+        <li><span class="ix-y">2022</span><span class="ix-n">Warehouse sync connector</span><span class="ix-t">Python</span></li>
+        <li><span class="ix-y">2022</span><span class="ix-n">Invoice PDF renderer</span><span class="ix-t">Node</span></li>
+      </ol>
+    </div>
+    <div class="cell c6 index-col">
+      <ol class="index mono">
+        <li><span class="ix-y">2021</span><span class="ix-n">SSO / OIDC provider</span><span class="ix-t">Go</span></li>
+        <li><span class="ix-y">2021</span><span class="ix-n">Audit log store</span><span class="ix-t">ClickHouse</span></li>
+        <li><span class="ix-y">2020</span><span class="ix-n">Courier tracking webhooks</span><span class="ix-t">Laravel</span></li>
+        <li><span class="ix-y">2020</span><span class="ix-n">Inventory reservation locks</span><span class="ix-t">Redis</span></li>
+        <li><span class="ix-y">2019</span><span class="ix-n">Multi-tenant billing</span><span class="ix-t">Laravel</span></li>
+        <li><span class="ix-y">2018</span><span class="ix-n">POS offline sync</span><span class="ix-t">PHP · SQLite</span></li>
+        <li><span class="ix-y">2017</span><span class="ix-n">Campus enrolment system</span><span class="ix-t">PHP</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ 05 — OSS ═══ head 3 / 4 / 5, then 4 boxes of 3 -->
+  <section class="row sec-head" id="oss">
+    <div class="cell c3 rail">
+      <span class="mono num">05</span>
+      <span class="mono lbl">OSS</span>
+    </div>
+    <div class="cell c4">
+      <h2>Open<br>Source</h2>
+    </div>
+    <div class="cell c5">
+      <p class="mono note">
+        Small tools, released when they stop being embarrassing.
+        Issues answered on weekends — github.com/aldesrahim
+      </p>
+    </div>
+  </section>
+
+  <section class="row repos">
+    <div class="cell c3 repo">
+      <div class="repo-h"><h3 class="mono">pgqueue</h3><span class="mono stars">★ 2,140</span></div>
+      <p>Exactly-once job queue for Postgres. No broker, no daemon, one table.</p>
+      <span class="mono repo-m">Go · MIT · v1.8.2<br>38 contributors</span>
+    </div>
+    <div class="cell c3 repo">
+      <div class="repo-h"><h3 class="mono">otel-lite</h3><span class="mono stars">★ 861</span></div>
+      <p>Zero-dependency OpenTelemetry tracer for services that cannot afford the SDK.</p>
+      <span class="mono repo-m">Go · Apache-2.0 · v0.9.0<br>11 contributors</span>
+    </div>
+    <div class="cell c3 repo">
+      <div class="repo-h"><h3 class="mono">ledgerkit</h3><span class="mono stars">★ 494</span></div>
+      <p>Double-entry accounting primitives with money types that refuse to lose a cent.</p>
+      <span class="mono repo-m">Go · MIT · v0.4.1<br>6 contributors</span>
+    </div>
+    <div class="cell c3 repo">
+      <div class="repo-h"><h3 class="mono">envdoc</h3><span class="mono stars">★ 203</span></div>
+      <p>Generates env-var documentation from struct tags. Built during one long incident.</p>
+      <span class="mono repo-m">Go · MIT · v2.0.0<br>4 contributors</span>
+    </div>
+  </section>
+
+  <!-- ═══ 06 — CONTACT ═══ 3 / 5 / 4 -->
+  <section class="row contact" id="contact">
+    <div class="cell c3 rail">
+      <span class="mono num">06</span>
+      <span class="mono lbl">Contact</span>
+    </div>
+    <div class="cell c5 contact-main">
+      <a class="mailto" href="mailto:hello@aldesrahim.dev">hello@<br>aldesrahim.dev</a>
+    </div>
+    <div class="cell c4 contact-side">
+      <ul class="mono channels">
+        <li><span>GitHub</span><a href="#">@aldesrahim ↗</a></li>
+        <li><span>LinkedIn</span><a href="#">in/aldesrahim ↗</a></li>
+        <li><span>X</span><a href="#">@aldesrahim ↗</a></li>
+        <li><span>Résumé</span><a href="#">PDF, 82kb ↗</a></li>
+      </ul>
+      <p class="mono note tight">
+        Replies within two working days. Contract and advisory work only
+        for now — no full-time roles until Q2.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ 4 / 4 / 4 -->
+  <footer class="row foot">
+    <div class="cell c6"><span class="mono lbl faint">© 2026</span></div>
+    <div class="cell c6"><span class="mono lbl faint">Jakarta · 06°12′S 106°49′E</span></div>
+  </footer>
+
+</div>
+
+<script>
+/* Crosshairs are derived from the cells themselves: collect every cell
+   corner, dedupe, drop a "+" there. Because the grid is per-section, the
+   marks land wherever rules actually meet — no fixed line positions. */
+(function () {
+  var frame = document.getElementById('frame');
+  var layer = document.getElementById('crosshairs');
+
+  function paint() {
+    var box = frame.getBoundingClientRect();
+    /* the layer is inset:0, so its origin is the frame's PADDING box —
+       step past the frame's own top/left border before measuring */
+    var base = { left: box.left + frame.clientLeft, top: box.top + frame.clientTop };
+    var cells = frame.querySelectorAll('.cell');
+    var seen = Object.create(null);
+    var html = '';
+
+    for (var i = 0; i < cells.length; i++) {
+      var r = cells[i].getBoundingClientRect();
+      if (!r.width || !r.height) continue;
+
+      /* A 1px border paints on the pixel *before* the box edge, i.e.
+         [edge - 1, edge). Round first — 12 fractional columns put the
+         edges on subpixels — then step back one to sit on the rule. */
+      var xs = [Math.round(r.left  - base.left) - 1, Math.round(r.right  - base.left) - 1];
+      var ys = [Math.round(r.top   - base.top)  - 1, Math.round(r.bottom - base.top)  - 1];
+
+      for (var a = 0; a < 2; a++) {
+        for (var b = 0; b < 2; b++) {
+          var key = xs[a] + ':' + ys[b];
+          if (seen[key]) continue;
+          seen[key] = 1;
+          html += '<i class="x" style="left:' + xs[a] + 'px;top:' + ys[b] + 'px"></i>';
+        }
+      }
+    }
+    layer.innerHTML = html;
+  }
+
+  var t;
+  function schedule() { clearTimeout(t); t = setTimeout(paint, 60); }
+
+  paint();
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', paint);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(frame);
+})();
+</script>
+
+</body>
+</html>

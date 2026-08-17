@@ -10,14 +10,13 @@ interface Props {
 }
 
 const { images, eager = false } = Astro.props;
-const kind = images[0]?.kind ?? 'landscape';
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
 {
   images.length === 0 ? (
     <div class="slider">
-      <div class="frame">
+      <div class="window">
         <div class="track">
           <div class="slide">
             <p class="empty">{site.project.emptyGallery}</p>
@@ -27,7 +26,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </div>
   ) : (
     <div class="slider" data-slider data-autoplay={site.gallery.autoplayMs}>
-      <div class:list={['frame', kind]}>
+      <div class="window">
         <div class="track">
           {images.map((img, i) => (
             <div class="slide">
@@ -44,10 +43,16 @@ const pad = (n: number) => String(n).padStart(2, '0');
         </div>
       </div>
       <div class="controls">
-        <span class="counter" data-counter>{pad(1)} / {pad(images.length)}</span>
-        <div class="nav">
-          <button type="button" data-prev aria-label="Previous image">Prev</button>
-          <button type="button" data-next aria-label="Next image">Next</button>
+        <span class="counter" data-counter>
+          {pad(1)} / {pad(images.length)}
+        </span>
+        <div class="steps">
+          <button type="button" data-prev aria-label="Previous image">
+            Prev
+          </button>
+          <button type="button" data-next aria-label="Next image">
+            Next
+          </button>
         </div>
       </div>
     </div>
