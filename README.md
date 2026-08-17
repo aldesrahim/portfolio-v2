@@ -79,9 +79,12 @@ Configured in `astro.config.ts`; used through `--font-sans` / `--font-mono`.
 
 ## Theme
 
-Light by default, set by `site.defaultTheme`. The toggle stores the choice in
-`localStorage` and an inline script applies it before first paint, so there is
-no flash.
+Follows the visitor's OS by default. Clicking the toggle stores an explicit
+choice in `localStorage`, and from then on that choice wins over the system on
+that browser. An inline head script applies a stored choice before first paint,
+so there is no flash; with no stored choice the stylesheet's
+`prefers-color-scheme` block decides, which also covers visitors with
+JavaScript off.
 
 ## Counts in copy
 

@@ -23,7 +23,6 @@ const { active } = Astro.props;
     <button
       class="theme-toggle"
       id="themeToggle"
-      data-theme={site.defaultTheme}
       aria-label="Toggle dark mode"
       title="Toggle dark mode">{site.nav.themeLabel}</button
     >
@@ -33,20 +32,42 @@ const { active } = Astro.props;
 <script>
   const toggle = document.getElementById('themeToggle');
   const root = document.documentElement;
+  const media = window.matchMedia?.('(prefers-color-scheme: dark)');
 
-  function apply(theme: string) {
-    root.setAttribute('data-theme', theme);
-    toggle?.setAttribute('data-theme', theme);
+  function stored(): string | null {
     try {
-      localStorage.setItem('theme', theme);
+      return localStorage.getItem('theme');
     } catch {
-      /* private mode — the theme lasts for this page only */
+      return null;
     }
   }
 
-  apply(root.getAttribute('data-theme') ?? 'light');
-  toggle?.addEventListener('click', () => {
-    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  // No attribute means the visitor has not chosen and the OS is in charge.
+  function effective(): string {
+    return root.getAttribute('data-theme') ?? (media?.matches ? 'dark' : 'light');
+  }
+
+  function paintToggle() {
+    toggle?.setAttribute('data-theme', effective());
+  }
+
+  function choose(theme: string) {
+    root.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* private mode — the choice lasts for this page only */
+    }
+    paintToggle();
+  }
+
+  paintToggle();
+  toggle?.addEventListener('click', () => choose(effective() === 'dark' ? 'light' : 'dark'));
+
+  // Until the toggle is clicked, follow the system live — the square in the
+  // toggle has to keep up with a mid-visit OS switch.
+  media?.addEventListener('change', () => {
+    if (!stored()) paintToggle();
   });
 
   // Underline the nav link whose target matches the current hash. No hash (or a

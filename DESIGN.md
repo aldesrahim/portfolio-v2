@@ -7,7 +7,7 @@ than a stack of bands.
 
 Implemented in `src/styles/global.css`, with the crosshair painter in
 `src/layouts/Sheet.astro`. Tokens are CSS custom properties on `:root`,
-overridden under `html[data-theme="dark"]`.
+overridden under `prefers-color-scheme: dark` and under `html[data-theme="dark"]`.
 
 Source of the direction: `mockup2/` (kept for reference, excluded from the
 build).
@@ -45,9 +45,13 @@ build).
 One accent only. It never fills an area larger than the 6px status square — it
 is a text color, an arrow, a 1px underline. No gradients, no tints, no shadows.
 
-The theme is a switch, not a media query: light is the default, the masthead
-toggle writes the choice to `localStorage`, and an inline head script applies it
-before first paint.
+The theme follows the visitor's OS until they say otherwise. Dark tokens are
+declared twice: once under `@media (prefers-color-scheme: dark)` guarded by
+`html:not([data-theme='light'])`, once under `html[data-theme='dark']`. An
+explicit choice is the presence of the attribute — the masthead toggle writes it
+and stores it in `localStorage`, and an inline head script re-applies it before
+first paint. No stored choice means no attribute, so the media query rules and a
+mid-visit OS switch is picked up live.
 
 ## Typography
 

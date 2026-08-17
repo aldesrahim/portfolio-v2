@@ -17,7 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
 ---
 
 <!doctype html>
-<html lang={site.lang} data-theme={site.defaultTheme}>
+<html lang={site.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,13 +32,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
     <meta name="generator" content={Astro.generator} />
     <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-mono" preload />
-    <script is:inline define:vars={{ fallback: site.defaultTheme }}>
-      // Set the theme before first paint so the sheet never flashes.
+    <script is:inline>
+      // An explicit choice is a `data-theme` attribute; no choice means no
+      // attribute at all, which leaves the stylesheet's prefers-color-scheme
+      // block in charge. Runs before first paint, so nothing flashes.
       try {
         var stored = localStorage.getItem('theme');
-        document.documentElement.setAttribute('data-theme', stored || fallback);
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
       } catch (e) {
-        document.documentElement.setAttribute('data-theme', fallback);
+        /* private mode — the OS preference decides for this visit */
       }
     </script>
   </head>

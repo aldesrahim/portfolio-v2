@@ -23,6 +23,23 @@
   --measure: 62ch;
 }
 
+/* Dark tokens land twice on purpose. The media query is the default for a
+   visitor who has never touched the toggle — including one with JavaScript
+   off — and `:not([data-theme='light'])` lets an explicit light choice win it.
+   The attribute rule then carries an explicit dark choice on a light system. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) {
+    --paper: #101010;
+    --ink: #ece9e2;
+    --ink-2: #a9a49a;
+    --ink-3: #6d6961;
+    --line: #34322d;
+    --hair: #242220;
+    --panel: #171716;
+    --accent: #e0703f;
+  }
+}
+
 html[data-theme='dark'] {
   --paper: #101010;
   --ink: #ece9e2;
@@ -44,6 +61,11 @@ html[data-theme='dark'] {
 html {
   -webkit-text-size-adjust: 100%;
   color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) {
+    color-scheme: dark;
+  }
 }
 html[data-theme='dark'] {
   color-scheme: dark;

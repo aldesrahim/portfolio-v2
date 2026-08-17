@@ -117,8 +117,11 @@ export const site = {
   /** First working year. Feeds the `{years}` token. */
   since: 2020,
 
-  /** "light" | "dark" — used before the visitor picks one. */
-  defaultTheme: 'light' as 'light' | 'dark',
+  /*
+   * No theme knob: the site follows the visitor's OS until they click the
+   * toggle, after which their choice is stored. The palettes live in
+   * `src/styles/global.css`.
+   */
 
   nav: {
     /** Mono brand text at the left of the masthead. */
