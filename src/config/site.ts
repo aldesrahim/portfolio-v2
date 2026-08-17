@@ -183,7 +183,6 @@ export const site = {
         target: 'in/aldesrahim ↗',
         href: 'https://linkedin.com/in/aldesrahim',
       },
-      { label: 'Email', target: 'hi@aldes.dev', href: 'mailto:hi@aldes.dev' },
     ] satisfies ContactChannel[],
     note: 'A short statement inviting a conversation about a project, a role, or a good book.',
   },
