@@ -21,6 +21,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost/')
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+    <!-- iOS masks its own corners and ignores alpha, so this one is the square art. -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
