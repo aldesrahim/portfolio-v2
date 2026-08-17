@@ -1,0 +1,63 @@
+---
+import site from '../config/site';
+
+interface Props {
+  active?: string;
+}
+
+const { active } = Astro.props;
+---
+
+<nav>
+  <a class="brand" href="/">{site.nav.brand}</a>
+  <div class="links">
+    {
+      site.nav.links.map((link) => (
+        <a href={link.href} class={link.id && link.id === active ? 'active' : undefined}>
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+  <span class="divider"></span>
+  <button
+    class="theme-toggle"
+    id="themeToggle"
+    data-theme={site.defaultTheme}
+    aria-label="Toggle dark mode"
+    title="Toggle dark mode">{site.nav.themeLabel}</button
+  >
+</nav>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  function apply(theme: string) {
+    root.setAttribute('data-theme', theme);
+    toggle?.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* private mode — the theme lasts for this page only */
+    }
+  }
+
+  apply(root.getAttribute('data-theme') ?? 'light');
+  toggle?.addEventListener('click', () => {
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Underline the nav link whose target matches the current hash. No hash (or a
+  // hash no link points at) leaves the server-rendered link underlined.
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav .links a[href*="#"]'));
+
+  function syncActive() {
+    const match = links.find((link) => link.hash !== '' && link.hash === location.hash);
+    if (!match) return;
+    for (const link of links) link.classList.toggle('active', link === match);
+  }
+
+  window.addEventListener('hashchange', syncActive);
+  syncActive();
+</script>

@@ -1,0 +1,18 @@
+---
+import Sheet from '../layouts/Sheet.astro';
+import site from '../config/site';
+---
+
+<Sheet title={`Not found — ${site.titleSuffix}`} description="Page not found.">
+  <section class="band detail">
+    <div class="band-label">
+      <span class="entry-num">404</span>
+      <div>Not found</div>
+    </div>
+    <div class="band-content">
+      <h1>No such page</h1>
+      <p class="lede">That entry is not in the catalogue.</p>
+      <div class="links-row"><a href="/">Back to the index</a></div>
+    </div>
+  </section>
+</Sheet>

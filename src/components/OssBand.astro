@@ -1,0 +1,24 @@
+---
+import type { OssEntry } from '../config/site';
+
+interface Props {
+  entry: OssEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<section class="band oss">
+  <div class="band-label"><span class="repo-chip">{entry.tag}</span></div>
+  <div class="band-content">
+    <h3>{entry.name}</h3>
+    <p class="desc">{entry.desc}</p>
+    {
+      entry.url && (
+        <a class="repo-link" href={entry.url} target="_blank" rel="noopener">
+          {entry.host ?? entry.url} ↗
+        </a>
+      )
+    }
+  </div>
+</section>

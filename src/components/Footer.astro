@@ -1,0 +1,10 @@
+---
+import site from '../config/site';
+
+const year = String(new Date().getFullYear());
+const items = site.footer.items.map((item) => item.replace('{year}', year));
+---
+
+<footer>
+  {items.map((item) => <span>{item}</span>)}
+</footer>

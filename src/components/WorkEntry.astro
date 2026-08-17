@@ -1,0 +1,36 @@
+---
+import site from '../config/site';
+import Slider from './Slider.astro';
+import { pad, type Project } from '../lib/projects';
+
+interface Props {
+  project: Project;
+  /** Position in the Work list, 1-based. */
+  number: number;
+}
+
+const { project, number } = Astro.props;
+const { data, url, images } = project;
+const stack = data.stack.join(' · ');
+---
+
+<section class="band work">
+  <div class="band-label">
+    <span class="entry-num">{pad(number)}</span>
+    <div>{data.year}</div>
+    <div>{data.client}</div>
+    {stack && <span class="accent">{stack}</span>}
+  </div>
+  <div class="band-content">
+    <h2><a href={url}>{data.title}</a></h2>
+    <p class="desc">{data.description}</p>
+    {
+      data.liveUrl && (
+        <a class="live-link" href={data.liveUrl} target="_blank" rel="noopener">
+          {site.project.liveLabel}
+        </a>
+      )
+    }
+    <Slider images={images} eager={number === 1} />
+  </div>
+</section>

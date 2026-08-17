@@ -1,0 +1,1170 @@
+{
+  "gallery": [
+    {
+      "slug": "monogram-ai",
+      "title": "Monogram AI",
+      "year": "2024",
+      "client": "Side Project",
+      "stack": [
+        "Laravel",
+        "AI"
+      ],
+      "cover": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-06-09 Monogram AI — Custom AI Monogram Generator.png",
+      "images": [
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-06-09 Monogram AI — Custom AI Monogram Generator.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-06-09 Monogram AI — Custom AI Monogram Generator.png",
+          "width": 1654,
+          "height": 2953,
+          "ratio": 0.56,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-06-50 Monogram AI — Custom AI Monogram Generator.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-06-50 Monogram AI — Custom AI Monogram Generator.png",
+          "width": 1654,
+          "height": 1344,
+          "ratio": 1.231,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-07-05 Monogram AI — Custom AI Monogram Generator.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-07-05 Monogram AI — Custom AI Monogram Generator.png",
+          "width": 1654,
+          "height": 1551,
+          "ratio": 1.066,
+          "kind": "square"
+        },
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-07-41 Credits — Monogram AI.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-07-41 Credits — Monogram AI.png",
+          "width": 1654,
+          "height": 1374,
+          "ratio": 1.204,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-08-28 Settings — Monogram AI.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-08-28 Settings — Monogram AI.png",
+          "width": 1654,
+          "height": 2065,
+          "ratio": 0.801,
+          "kind": "square"
+        },
+        {
+          "src": "data/gallery/monogram-ai/Screenshot 2026-08-05 at 14-29-28 Monogram AI — Custom AI Monogram Generator.png",
+          "alt": "Monogram AI — Screenshot 2026-08-05 at 14-29-28 Monogram AI — Custom AI Monogram Generator.png",
+          "width": 1920,
+          "height": 947,
+          "ratio": 2.027,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "Type your initials. An AI model draws a monogram you can use as a logo or a brand mark.",
+      "featured": true,
+      "liveUrl": "https://monogram.aldes.dev/",
+      "coverAspect": "portrait"
+    },
+    {
+      "slug": "wedding-invitation",
+      "title": "Wedding Invitation",
+      "year": "2024",
+      "client": "Side Project",
+      "stack": [
+        "Laravel",
+        "FilamentPHP"
+      ],
+      "cover": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.11.42.png",
+      "images": [
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.11.42.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.11.42.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.12.25.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.12.25.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.12.45.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.12.45.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.13.04.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.13.04.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.13.32.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.13.32.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screen Shot 2026-08-05 at 14.13.41.png",
+          "alt": "Wedding Invitation — Screen Shot 2026-08-05 at 14.13.41.png",
+          "width": 1206,
+          "height": 2622,
+          "ratio": 0.46,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-09-29 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-09-29 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "width": 1576,
+          "height": 947,
+          "ratio": 1.664,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-10-05 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-10-05 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "width": 1576,
+          "height": 7274,
+          "ratio": 0.217,
+          "kind": "portrait"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-10-42 Dasbor - Wedding Invitation - B & A.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-10-42 Dasbor - Wedding Invitation - B & A.png",
+          "width": 1576,
+          "height": 962,
+          "ratio": 1.638,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-14-53 Tamu - Wedding Invitation - B & A.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-14-53 Tamu - Wedding Invitation - B & A.png",
+          "width": 1576,
+          "height": 1604,
+          "ratio": 0.983,
+          "kind": "square"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-15-13 RSVP - Wedding Invitation - B & A.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-15-13 RSVP - Wedding Invitation - B & A.png",
+          "width": 1576,
+          "height": 1035,
+          "ratio": 1.523,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-16-23 Tags - Wedding Invitation - B & A.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-16-23 Tags - Wedding Invitation - B & A.png",
+          "width": 1920,
+          "height": 992,
+          "ratio": 1.935,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-19-54 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-19-54 Pernikahan Beliza N. & A. Al Desrahim.png",
+          "width": 1920,
+          "height": 947,
+          "ratio": 2.027,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/wedding-invitation/Screenshot 2026-08-05 at 14-20-43 Ubah Tamu - Wedding Invitation - B & A.png",
+          "alt": "Wedding Invitation — Screenshot 2026-08-05 at 14-20-43 Ubah Tamu - Wedding Invitation - B & A.png",
+          "width": 1920,
+          "height": 1325,
+          "ratio": 1.449,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A configurable wedding invitation app. Hosts edit the invitation, manage the guest list, send it out, and check guests in at the door. In real use it cut check-in time by about half.",
+      "featured": true,
+      "liveUrl": "https://theweddingofbelizaand.aldes.dev/",
+      "coverAspect": "portrait"
+    },
+    {
+      "slug": "pesawaran-tax-checker",
+      "title": "Pesawaran Tax Checker",
+      "year": "2021",
+      "client": "PT. FTF Globalindo",
+      "stack": [
+        "Laravel",
+        "Livewire",
+        "MySQL"
+      ],
+      "cover": "data/gallery/pesawaran-tax-checker/1.png",
+      "images": [
+        {
+          "src": "data/gallery/pesawaran-tax-checker/1.png",
+          "alt": "Pesawaran Tax Checker — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/2.png",
+          "alt": "Pesawaran Tax Checker — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/3.png",
+          "alt": "Pesawaran Tax Checker — 3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/4.png",
+          "alt": "Pesawaran Tax Checker — 4.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/5.png",
+          "alt": "Pesawaran Tax Checker — 5.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/6.png",
+          "alt": "Pesawaran Tax Checker — 6.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/7.png",
+          "alt": "Pesawaran Tax Checker — 7.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/8.png",
+          "alt": "Pesawaran Tax Checker — 8.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/9.png",
+          "alt": "Pesawaran Tax Checker — 9.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/10.png",
+          "alt": "Pesawaran Tax Checker — 10.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/11.png",
+          "alt": "Pesawaran Tax Checker — 11.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/12.png",
+          "alt": "Pesawaran Tax Checker — 12.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/13.png",
+          "alt": "Pesawaran Tax Checker — 13.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/14.png",
+          "alt": "Pesawaran Tax Checker — 14.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/pesawaran-tax-checker/15.png",
+          "alt": "Pesawaran Tax Checker — 15.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A tax status checker for Pesawaran regency in Lampung. Citizens look up what they owe online instead of going to the tax office. It is one of several e-tax applications I built and maintained for local governments across several regencies. This one runs on Laravel and Livewire. The rest of the suite is older: the core e-tax system runs on PHP 5.6 with a Java service for tax calculation, and a second checker runs on CodeIgniter 3. I maintained and modernized both while building the newer ones.",
+      "featured": true,
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "asset-management",
+      "title": "Asset Management & Tracking",
+      "year": "2020",
+      "client": "PT. FTF Globalindo",
+      "stack": [
+        "Laravel",
+        "RFID",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "cover": "data/gallery/asset-management/1.png",
+      "images": [
+        {
+          "src": "data/gallery/asset-management/1.png",
+          "alt": "Asset Management & Tracking — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/2.png",
+          "alt": "Asset Management & Tracking — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/3.png",
+          "alt": "Asset Management & Tracking — 3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/4.png",
+          "alt": "Asset Management & Tracking — 4.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/5.png",
+          "alt": "Asset Management & Tracking — 5.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/6.png",
+          "alt": "Asset Management & Tracking — 6.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/7.png",
+          "alt": "Asset Management & Tracking — 7.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.0.png",
+          "alt": "Asset Management & Tracking — 8.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.1.png",
+          "alt": "Asset Management & Tracking — 8.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.2.png",
+          "alt": "Asset Management & Tracking — 8.2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.3.png",
+          "alt": "Asset Management & Tracking — 8.3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.4.png",
+          "alt": "Asset Management & Tracking — 8.4.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/8.5.png",
+          "alt": "Asset Management & Tracking — 8.5.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/9.png",
+          "alt": "Asset Management & Tracking — 9.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/10.0.png",
+          "alt": "Asset Management & Tracking — 10.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/10.1.png",
+          "alt": "Asset Management & Tracking — 10.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/11.png",
+          "alt": "Asset Management & Tracking — 11.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/12.png",
+          "alt": "Asset Management & Tracking — 12.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/13.png",
+          "alt": "Asset Management & Tracking — 13.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/14.0.png",
+          "alt": "Asset Management & Tracking — 14.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/14.1.png",
+          "alt": "Asset Management & Tracking — 14.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/14.2.png",
+          "alt": "Asset Management & Tracking — 14.2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/15.0.png",
+          "alt": "Asset Management & Tracking — 15.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/15.1.png",
+          "alt": "Asset Management & Tracking — 15.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/asset-management/15.2.png",
+          "alt": "Asset Management & Tracking — 15.2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "An asset tracking system for government facilities. Every asset carries an RFID tag. Staff scan the tag at any site, and the system checks the scan against a central registry. It also handles check-out and check-in, shows where each asset is now, tracks depreciation, and prints audit reports for compliance.",
+      "featured": true,
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "facility-reservation",
+      "title": "Public Facility Reservation",
+      "year": "2020",
+      "client": "PT. FTF Globalindo",
+      "stack": [
+        "Laravel",
+        "Livewire",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "cover": "data/gallery/facility-reservation/1.png",
+      "images": [
+        {
+          "src": "data/gallery/facility-reservation/1.png",
+          "alt": "Public Facility Reservation — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/2.0.png",
+          "alt": "Public Facility Reservation — 2.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/2.1.png",
+          "alt": "Public Facility Reservation — 2.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/3.0.png",
+          "alt": "Public Facility Reservation — 3.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/3.1.png",
+          "alt": "Public Facility Reservation — 3.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/4.0.png",
+          "alt": "Public Facility Reservation — 4.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/4.1.png",
+          "alt": "Public Facility Reservation — 4.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/5.png",
+          "alt": "Public Facility Reservation — 5.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/6.png",
+          "alt": "Public Facility Reservation — 6.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/7.0.png",
+          "alt": "Public Facility Reservation — 7.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/7.1.png",
+          "alt": "Public Facility Reservation — 7.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/8.png",
+          "alt": "Public Facility Reservation — 8.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/9.png",
+          "alt": "Public Facility Reservation — 9.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/10.png",
+          "alt": "Public Facility Reservation — 10.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/11.png",
+          "alt": "Public Facility Reservation — 11.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/facility-reservation/12.png",
+          "alt": "Public Facility Reservation — 12.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A booking system for public facilities, built for a local government client. Citizens browse the available spaces — courts, halls, community rooms — and request a booking online. Admins review each request, manage the schedule, catch double bookings, and generate occupancy reports. Livewire drives the interactive parts, so the project needs no separate frontend build.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "inventory-jr",
+      "title": "Enterprise Inventory — Jasa Raharja",
+      "year": "2020",
+      "client": "PT. FTF Globalindo",
+      "stack": [
+        "Yii2",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "cover": "data/gallery/inventory-jr/1.png",
+      "images": [
+        {
+          "src": "data/gallery/inventory-jr/1.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/2.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/3.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/4.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 4.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/5.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 5.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/6.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 6.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-jr/7.png",
+          "alt": "Enterprise Inventory — Jasa Raharja — 7.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "An inventory system for Jasa Raharja, a state-owned insurance company. It tracks stock movement across regional warehouses, manages procurement and supplier records, and keeps an audit trail for government reporting. Built on Yii2 to match the client's existing stack, which is where I learned the framework.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "alfa-pos",
+      "title": "Alfa POS",
+      "year": "2020",
+      "client": "PT. FTF Globalindo",
+      "stack": [
+        "CodeIgniter 3",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "cover": "data/gallery/alfa-pos/1.PNG",
+      "images": [
+        {
+          "src": "data/gallery/alfa-pos/1.PNG",
+          "alt": "Alfa POS — 1.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/alfa-pos/2.PNG",
+          "alt": "Alfa POS — 2.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/alfa-pos/3.PNG",
+          "alt": "Alfa POS — 3.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A point-of-sale system for a retail client who wanted every sale to move stock straight away. The cashier screen handles transactions, discounts, and receipt printing. The back office holds the product catalog, stock adjustments, and daily sales reports.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "handovers-and-filing",
+      "title": "Handovers & Filing",
+      "year": "2021",
+      "client": "Side Project",
+      "stack": [
+        "Laravel",
+        "Jetstream",
+        "Livewire",
+        "MySQL"
+      ],
+      "cover": "data/gallery/handovers-and-filing/1.PNG",
+      "images": [
+        {
+          "src": "data/gallery/handovers-and-filing/1.PNG",
+          "alt": "Handovers & Filing — 1.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/2.PNG",
+          "alt": "Handovers & Filing — 2.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/3.PNG",
+          "alt": "Handovers & Filing — 3.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/4.PNG",
+          "alt": "Handovers & Filing — 4.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/5.PNG",
+          "alt": "Handovers & Filing — 5.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/6.PNG",
+          "alt": "Handovers & Filing — 6.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/7.PNG",
+          "alt": "Handovers & Filing — 7.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/8.PNG",
+          "alt": "Handovers & Filing — 8.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/9.PNG",
+          "alt": "Handovers & Filing — 9.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/10.PNG",
+          "alt": "Handovers & Filing — 10.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/handovers-and-filing/11.PNG",
+          "alt": "Handovers & Filing — 11.PNG",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A shipment and document tracker for a friend's fulfillment operation. It records incoming and outgoing shipments by air waybill (AWB) and keeps the paperwork attached to each one. Operators write a handover log at the end of a shift, so the next shift knows what happened. Each document carries its own filing status. Built with Laravel Jetstream and Livewire, so the screens update without a page reload.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "cluster-residence",
+      "title": "Cluster Residence",
+      "year": "2021",
+      "client": "Side Project",
+      "stack": [
+        "WordPress"
+      ],
+      "cover": "data/gallery/cluster-residence/1.png",
+      "images": [
+        {
+          "src": "data/gallery/cluster-residence/1.png",
+          "alt": "Cluster Residence — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/cluster-residence/2.png",
+          "alt": "Cluster Residence — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/cluster-residence/3.png",
+          "alt": "Cluster Residence — 3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A management system for a housing developer's residential cluster. It holds the records for units, residents, monthly fees, and maintenance requests. Admins send announcements, check who has paid, and generate occupancy summaries.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "inventory-eureka",
+      "title": "Eureka Inventory",
+      "year": "2020",
+      "client": "PT. Eureka Logistics",
+      "stack": [
+        "Laravel",
+        "MySQL",
+        "Bootstrap"
+      ],
+      "cover": "data/gallery/inventory-eureka/1.png",
+      "images": [
+        {
+          "src": "data/gallery/inventory-eureka/1.png",
+          "alt": "Eureka Inventory — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/inventory-eureka/2.png",
+          "alt": "Eureka Inventory — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "An inventory system for Eureka, a logistics and distribution company. It covers the product catalog, stock levels, suppliers, and purchase orders. It warns staff when stock runs low and keeps a movement history for each item.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "activity-scheduler",
+      "title": "Activity Scheduler",
+      "year": "2020",
+      "client": "Side Project",
+      "stack": [
+        "Laravel",
+        "AJAX",
+        "MySQL"
+      ],
+      "cover": "data/gallery/activity-scheduler/1.png",
+      "images": [
+        {
+          "src": "data/gallery/activity-scheduler/1.png",
+          "alt": "Activity Scheduler — 1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/2.png",
+          "alt": "Activity Scheduler — 2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/3.png",
+          "alt": "Activity Scheduler — 3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/4.0.png",
+          "alt": "Activity Scheduler — 4.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/4.1.png",
+          "alt": "Activity Scheduler — 4.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/5.0.png",
+          "alt": "Activity Scheduler — 5.0.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/5.1.png",
+          "alt": "Activity Scheduler — 5.1.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/5.2.png",
+          "alt": "Activity Scheduler — 5.2.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/5.3.png",
+          "alt": "Activity Scheduler — 5.3.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/6.png",
+          "alt": "Activity Scheduler — 6.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/7.png",
+          "alt": "Activity Scheduler — 7.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/activity-scheduler/8.png",
+          "alt": "Activity Scheduler — 8.png",
+          "width": 1920,
+          "height": 1080,
+          "ratio": 1.778,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A shift task tracker for a clinic that was still running on paper. Staff tick off their daily tasks, sorted by category and time slot. Managers read the completion history by task and by employee. My first side project, and the first thing I built end to end for people to use every day.",
+      "coverAspect": "landscape"
+    },
+    {
+      "slug": "idm-schedule-generator",
+      "title": "IDM Schedule Generator",
+      "year": "2021",
+      "client": "Side Project",
+      "stack": [
+        "Laravel",
+        "Livewire",
+        "MySQL"
+      ],
+      "cover": "data/gallery/idm-schedule-generator/1.PNG",
+      "images": [
+        {
+          "src": "data/gallery/idm-schedule-generator/1.PNG",
+          "alt": "IDM Schedule Generator — 1.PNG",
+          "width": 1903,
+          "height": 1080,
+          "ratio": 1.762,
+          "kind": "landscape"
+        },
+        {
+          "src": "data/gallery/idm-schedule-generator/2.png",
+          "alt": "IDM Schedule Generator — 2.png",
+          "width": 1903,
+          "height": 1080,
+          "ratio": 1.762,
+          "kind": "landscape"
+        }
+      ],
+      "desc": "A weekly staff schedule generator. It builds the roster from the shift rules and who is available, instead of a planner working it out by hand.",
+      "coverAspect": "landscape"
+    }
+  ],
+  "stack": [
+    {
+      "label": "LANGUAGES",
+      "items": "PHP · JavaScript · Go"
+    },
+    {
+      "label": "FRAMEWORK",
+      "items": "Laravel"
+    },
+    {
+      "label": "DATA & CACHE",
+      "items": "MySQL · Redis"
+    },
+    {
+      "label": "INFRA & OPS",
+      "items": "Linux · Docker"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Wilayah Indonesia",
+      "desc": "Provinces, cities, districts, and villages of Indonesia. GitHub Actions builds the data from BPS sources and publishes it as JSON.",
+      "host": "github.com/aldesrahim/wilayah-indonesia",
+      "url": "https://github.com/aldesrahim/wilayah-indonesia",
+      "tag": "REPO"
+    },
+    {
+      "name": "Filament Compass",
+      "desc": "Filament v5 documentation, written for LLMs and AI-assisted development.",
+      "host": "github.com/aldesrahim/filament-compass-pkg",
+      "url": "https://github.com/aldesrahim/filament-compass-pkg",
+      "tag": "REPO"
+    },
+    {
+      "name": "Localdev",
+      "desc": "A Docker-based local development environment for PHP and Laravel, with a choice of databases. Laradock, cut down for personal use.",
+      "host": "github.com/aldesrahim/localdev",
+      "url": "https://github.com/aldesrahim/localdev",
+      "tag": "REPO"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Sheet from '../../layouts/Sheet.astro';
+import Slider from '../../components/Slider.astro';
+import site from '../../config/site';
+import { getProjects, pad } from '../../lib/projects';
+
+export const getStaticPaths = (async () => {
+  const projects = await getProjects();
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, number: i + 1 },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project, number } = Astro.props;
+const { data, images } = project;
+const { Content } = await render(project.entry);
+const stack = data.stack.join(' · ');
+---
+
+<Sheet title={`${data.title} — ${site.titleSuffix}`} description={data.description} active="work">
+  <div class="back-band">
+    <span></span>
+    <a href="/#work">{site.project.backLabel}</a>
+  </div>
+
+  <section class="band detail">
+    <div class="band-label">
+      <span class="entry-num">{pad(number)}</span>
+      <div>{data.year}</div>
+      <div>{data.client}</div>
+      {stack && <span class="accent">{stack}</span>}
+    </div>
+    <div class="band-content">
+      <h1>{data.title}</h1>
+      <p class="lede">{data.description}</p>
+      <div class="links-row">
+        {
+          data.liveUrl && (
+            <a href={data.liveUrl} target="_blank" rel="noopener">
+              {site.project.liveLabel}
+            </a>
+          )
+        }
+        {
+          data.repoUrl && (
+            <a href={data.repoUrl} target="_blank" rel="noopener">
+              {site.project.repoLabel}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-label">{site.project.galleryLabel}</div>
+    <div class="band-content">
+      <Slider images={images} eager />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-label">{site.project.aboutLabel}</div>
+    <div class="band-content">
+      <div class="body-copy">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Sheet>

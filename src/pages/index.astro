@@ -1,0 +1,113 @@
+---
+import Sheet from '../layouts/Sheet.astro';
+import SectionBand from '../components/SectionBand.astro';
+import WorkEntry from '../components/WorkEntry.astro';
+import OssBand from '../components/OssBand.astro';
+import site from '../config/site';
+import { getSplitProjects, pad } from '../lib/projects';
+
+const { all, featured, rest } = await getSplitProjects();
+---
+
+<Sheet title={site.title} active="work">
+  <!-- Hero -->
+  <section class="band hero">
+    <div class="band-label">
+      <div>{site.hero.indexLabel}</div>
+      {site.hero.index.map((row) => <div class={row.accent ? 'accent' : undefined}>{row.text}</div>)}
+    </div>
+    <div class="band-content">
+      <h1>{site.hero.heading}</h1>
+      <p class="lede" set:html={site.hero.lede} />
+    </div>
+  </section>
+
+  <!-- Work -->
+  <SectionBand
+    id="work"
+    label={site.sections.work.label}
+    counter={`${pad(featured.length)} of ${pad(all.length)}`}
+  />
+  {featured.map((project, i) => <WorkEntry project={project} number={i + 1} />)}
+
+  <!-- Also built -->
+  {
+    rest.length > 0 && (
+      <>
+        <SectionBand
+          id="built"
+          label={site.sections.built.label}
+          counter={`${pad(rest.length)} of ${pad(all.length)}`}
+        />
+        <section class="band">
+          <div class="band-label">{site.sections.built.bandLabel}</div>
+          <div class="band-content">
+            {rest.map((project) => (
+              <div class="also-row">
+                <span class="name"><a href={project.url}>{project.data.title}</a></span>
+                <span class="meta">{project.data.year}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  <!-- Stack -->
+  {
+    site.showStack && (
+      <>
+        <SectionBand label="Stack" counter={`${pad(site.stack.length)} rows`} id="stack" />
+        <section class="band">
+          <div class="band-label">Tooling</div>
+          <div class="band-content">
+            {site.stack.map((row) => (
+              <div class="stack-row">
+                <span class="stack-items">{row.items}</span>
+                <span class="stack-label">{row.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  <!-- Open source -->
+  {
+    site.oss.length > 0 && (
+      <>
+        <SectionBand
+          id="oss"
+          label={site.sections.oss.label}
+          counter={site.sections.oss.counter}
+        />
+        {site.oss.map((entry) => <OssBand entry={entry} />)}
+      </>
+    )
+  }
+
+  <!-- Contact -->
+  <SectionBand
+    id="contact"
+    label={site.sections.contact.label}
+    counter={site.sections.contact.counter}
+  />
+  <section class="band contact">
+    <div class="band-label">{site.sections.contact.bandLabel}</div>
+    <div class="band-content">
+      <p class="statement">{site.contact.statement}</p>
+      <div class="link-table">
+        {
+          site.contact.links.map((link) => (
+            <div class="link-row">
+              <span class="link-target"><a href={link.href}>{link.target}</a></span>
+              <span class="link-label">{link.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Sheet>

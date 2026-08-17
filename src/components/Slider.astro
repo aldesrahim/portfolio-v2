@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import site from '../config/site';
+import type { GalleryImage } from '../lib/gallery';
+
+interface Props {
+  images: GalleryImage[];
+  /** First slider on a page loads its first image eagerly. */
+  eager?: boolean;
+}
+
+const { images, eager = false } = Astro.props;
+const kind = images[0]?.kind ?? 'landscape';
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+{
+  images.length === 0 ? (
+    <div class="slider">
+      <div class="frame">
+        <div class="track">
+          <div class="slide">
+            <p class="empty">{site.project.emptyGallery}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="slider" data-slider data-autoplay={site.gallery.autoplayMs}>
+      <div class:list={['frame', kind]}>
+        <div class="track">
+          {images.map((img, i) => (
+            <div class="slide">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={Math.min(img.width, site.gallery.maxWidth)}
+                format={site.gallery.format}
+                loading={eager && i === 0 ? 'eager' : 'lazy'}
+                decoding={eager && i === 0 ? 'auto' : 'async'}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="controls">
+        <span class="counter" data-counter>{pad(1)} / {pad(images.length)}</span>
+        <div class="nav">
+          <button type="button" data-prev aria-label="Previous image">Prev</button>
+          <button type="button" data-next aria-label="Next image">Next</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const pad = (n: number) => String(n).padStart(2, '0');
+
+  function initSlider(slider: HTMLElement) {
+    const track = slider.querySelector<HTMLElement>('.track');
+    const slides = slider.querySelectorAll<HTMLElement>('.slide');
+    const counter = slider.querySelector<HTMLElement>('[data-counter]');
+    const prev = slider.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = slider.querySelector<HTMLButtonElement>('[data-next]');
+    if (!track || slides.length === 0) return;
+
+    const autoplay = Number(slider.dataset.autoplay ?? 0);
+    let index = 0;
+    let timer: number | null = null;
+
+    function render() {
+      track!.style.transform = `translateX(-${index * 100}%)`;
+      if (counter) counter.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+    }
+    function go(i: number) {
+      index = (i + slides.length) % slides.length;
+      render();
+    }
+    function start() {
+      if (autoplay > 0 && slides.length > 1 && timer === null) {
+        timer = window.setInterval(() => go(index + 1), autoplay);
+      }
+    }
+    function stop() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    prev?.addEventListener('click', () => go(index - 1));
+    next?.addEventListener('click', () => go(index + 1));
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+    slider.addEventListener('focusin', stop);
+
+    render();
+    start();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-slider]').forEach(initSlider);
+</script>

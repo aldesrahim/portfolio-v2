@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ahmad Al Desrahim — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --desk: #E5E9F0;
+  --paper: #FBFCFD;
+  --ink: #2E3440;
+  --ink-soft: #3B4252;
+  --muted: #4C566A;
+  --rule: #D8DEE9;
+  --rule-faint: #ECEFF4;
+  --accent: #5E81AC;
+  --sheet-shadow: 0 1px 0 #C3CBD9;
+}
+
+[data-theme="dark"] {
+  --desk: #1E222A;
+  --paper: #262B35;
+  --ink: #ECEFF4;
+  --ink-soft: #D8DEE9;
+  --muted: #8A93A5;
+  --rule: #3B4252;
+  --rule-faint: #333A45;
+  --accent: #88C0D0;
+  --sheet-shadow: 0 1px 0 #14171D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
+html { scroll-behavior: auto; }
+
+body {
+  background: var(--desk);
+  color: var(--ink-soft);
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 48px 24px;
+}
+
+p { text-wrap: pretty; }
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--accent); }
+
+.sheet {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--sheet-shadow);
+}
+
+/* ---------- Navbar ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+}
+nav .brand {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+nav .links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+nav .links a {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 3px;
+}
+nav .links a.active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+}
+nav .links a:hover { color: var(--accent); }
+
+.theme-toggle {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.theme-toggle:hover { color: var(--accent); }
+
+/* ---------- Bands ---------- */
+.band {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.band:last-of-type { border-bottom: none; }
+
+.band-label {
+  padding: 24px 24px 24px 40px;
+  border-right: 1px solid var(--rule);
+  align-self: stretch;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.band-label .label { color: var(--muted); }
+.band-label .accent { color: var(--accent); }
+
+.band-content {
+  padding: 34px 40px 40px;
+  min-width: 0;
+}
+
+/* ---------- Section header band ---------- */
+.section-band {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--rule);
+  padding: 18px 40px;
+  align-items: baseline;
+}
+.section-band .section-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-band .section-counter {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---------- Hero ---------- */
+.hero .band-label { padding-top: 40px; }
+.hero h1 {
+  font-size: 76px;
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.lede {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 620px;
+  color: var(--ink-soft);
+}
+.lede .draft {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---------- Work ---------- */
+.work .band-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.work .entry-num {
+  font-size: 30px;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.work h2 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.work .desc {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 600px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.work .live-link {
+  display: inline-block;
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+  margin-bottom: 24px;
+}
+.work .live-link:hover { color: var(--accent); }
+
+/* ---------- Slider ---------- */
+.slider {
+  border: 1px solid var(--rule);
+  padding: 6px;
+}
+.slider .frame {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border: 1px dashed var(--rule);
+}
+.slider .track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.slider .slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper);
+}
+.slider .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+}
+.slider .counter {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.slider .nav {
+  display: flex;
+  gap: 12px;
+}
+.slider .nav button {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.slider .nav button:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.slider .nav button:disabled {
+  color: var(--rule);
+  border-bottom-color: var(--rule-faint);
+  cursor: default;
+}
+
+/* ---------- Also built ---------- */
+.also-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.also-row:last-child { border-bottom: none; }
+.also-row .name { font-size: 19px; color: var(--ink); }
+.also-row .meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- OSS ---------- */
+.oss .band-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.repo-chip {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  padding: 4px 8px;
+  width: fit-content;
+}
+.oss h3 {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.oss .desc {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 600px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.oss .repo-link {
+  display: inline-block;
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.oss .repo-link:hover { color: var(--accent); }
+.oss .repo-missing {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+.contact .statement {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 600px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.link-table {
+  border-top: 1px solid var(--rule);
+}
+.link-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.link-row .link-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  order: 2;
+}
+.link-row .link-target {
+  font-size: 20px;
+  color: var(--ink);
+  order: 1;
+}
+.link-row .link-target:hover { color: var(--accent); }
+
+/* ---------- Footer ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 40px;
+  border-top: 1px solid var(--rule);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .band, .section-band {
+    grid-template-columns: 1fr;
+  }
+  .band-label, .section-band {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 24px;
+  }
+  .band-content { padding: 24px; }
+  .hero h1 { font-size: 48px; }
+  nav { flex-wrap: wrap; padding: 14px 24px; }
+  footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <nav>
+    <span class="brand">Ahmad Al Desrahim</span>
+    <div class="links">
+      <a href="#work" class="active">Work</a>
+      <a href="#built">Also built</a>
+      <a href="#oss">OSS</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">Light / Dark</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="band hero">
+    <div class="band-label">
+      <div>Index</div>
+      <div>Lisbon, PT</div>
+      <div>UTC+1</div>
+      <div>Since 2016</div>
+      <div class="accent">Available</div>
+    </div>
+    <div class="band-content">
+      <h1>Ahmad Al Desrahim</h1>
+      <p class="lede">
+        I design and build printed, catalogue-like interfaces for the web —
+        quiet, precise, and legible. <span class="draft">(Draft about paragraph
+        awaiting the owner's wording.)</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <div class="section-band" id="work">
+    <span class="section-label">Work</span>
+    <span class="section-counter">Three of twelve</span>
+  </div>
+
+  <section class="band work">
+    <div class="band-label">
+      <span class="entry-num">01</span>
+      <div>2024</div>
+      <div>Client</div>
+      <span class="accent">Stack</span>
+    </div>
+    <div class="band-content">
+      <h2><a href="project.html?id=01">Project Title</a></h2>
+      <p class="desc">One-sentence description of the project and its role,
+      kept to a single line of intent.</p>
+      <a class="live-link" href="#">Live ↗</a>
+      <div class="slider" data-slider>
+        <div class="frame">
+          <div class="track">
+            <div class="slide">Cover 01 — 01</div>
+            <div class="slide">Cover 01 — 02</div>
+            <div class="slide">Cover 01 — 03</div>
+          </div>
+        </div>
+        <div class="controls">
+          <span class="counter" data-counter>01 / 03</span>
+          <div class="nav">
+            <button data-prev aria-label="Previous">Prev</button>
+            <button data-next aria-label="Next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band work">
+    <div class="band-label">
+      <span class="entry-num">02</span>
+      <div>2023</div>
+      <div>Client</div>
+      <span class="accent">Stack</span>
+    </div>
+    <div class="band-content">
+      <h2><a href="project.html?id=02">Project Title</a></h2>
+      <p class="desc">One-sentence description of the project and its role,
+      kept to a single line of intent.</p>
+      <a class="live-link" href="#">Live ↗</a>
+      <div class="slider" data-slider>
+        <div class="frame">
+          <div class="track">
+            <div class="slide">Cover 02 — 01</div>
+            <div class="slide">Cover 02 — 02</div>
+            <div class="slide">Cover 02 — 03</div>
+          </div>
+        </div>
+        <div class="controls">
+          <span class="counter" data-counter>01 / 03</span>
+          <div class="nav">
+            <button data-prev aria-label="Previous">Prev</button>
+            <button data-next aria-label="Next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band work">
+    <div class="band-label">
+      <span class="entry-num">03</span>
+      <div>2022</div>
+      <div>Client</div>
+      <span class="accent">Stack</span>
+    </div>
+    <div class="band-content">
+      <h2><a href="project.html?id=03">Project Title</a></h2>
+      <p class="desc">One-sentence description of the project and its role,
+      kept to a single line of intent.</p>
+      <a class="live-link" href="#">Live ↗</a>
+      <div class="slider" data-slider>
+        <div class="frame">
+          <div class="track">
+            <div class="slide">Cover 03 — 01</div>
+            <div class="slide">Cover 03 — 02</div>
+            <div class="slide">Cover 03 — 03</div>
+          </div>
+        </div>
+        <div class="controls">
+          <span class="counter" data-counter>01 / 03</span>
+          <div class="nav">
+            <button data-prev aria-label="Previous">Prev</button>
+            <button data-next aria-label="Next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Also built -->
+  <div class="section-band" id="built">
+    <span class="section-label">Also built</span>
+    <span class="section-counter">Nine of twelve</span>
+  </div>
+
+  <section class="band">
+    <div class="band-label">Side projects</div>
+    <div class="band-content">
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+      <div class="also-row">
+        <span class="name">Project name</span>
+        <span class="meta">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OSS -->
+  <div class="section-band" id="oss">
+    <span class="section-label">Open source</span>
+    <span class="section-counter">github.com/aldesrahim</span>
+  </div>
+
+  <section class="band oss">
+    <div class="band-label">
+      <span class="repo-chip">Repo</span>
+    </div>
+    <div class="band-content">
+      <h3>Repo Name</h3>
+      <p class="desc">Description of the repository and what it does.</p>
+      <a class="repo-link" href="#">github.com/aldesrahim/repo ↗</a>
+    </div>
+  </section>
+
+  <section class="band oss">
+    <div class="band-label">
+      <span class="repo-chip">Repo</span>
+    </div>
+    <div class="band-content">
+      <h3>Filament Compass</h3>
+      <p class="desc">Description of the repository and what it does.</p>
+      <span class="repo-missing">URL pending</span>
+    </div>
+  </section>
+
+  <section class="band oss">
+    <div class="band-label">
+      <span class="repo-chip">Repo</span>
+    </div>
+    <div class="band-content">
+      <h3>Localdev</h3>
+      <p class="desc">Description of the repository and what it does.</p>
+      <span class="repo-missing">URL pending</span>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="section-band" id="contact">
+    <span class="section-label">Contact</span>
+    <span class="section-counter">Twelve of twelve</span>
+  </div>
+
+  <section class="band contact">
+    <div class="band-label">Contact</div>
+    <div class="band-content">
+      <p class="statement">A short statement inviting a conversation about a
+      project, a role, or a good book.</p>
+      <div class="link-table">
+        <div class="link-row">
+          <span class="link-target">hello@aldesrahim.com</span>
+          <span class="link-label">Email</span>
+        </div>
+        <div class="link-row">
+          <span class="link-target">@aldesrahim</span>
+          <span class="link-label">Mastodon</span>
+        </div>
+        <div class="link-row">
+          <span class="link-target">github.com/aldesrahim</span>
+          <span class="link-label">GitHub</span>
+        </div>
+        <div class="link-row">
+          <span class="link-target">linkedin.com/in/aldesrahim</span>
+          <span class="link-label">LinkedIn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Ahmad Al Desrahim</span>
+    <span>Newsreader · IBM Plex Mono</span>
+    <span>Printed, not poured</span>
+  </footer>
+
+</div>
+
+<script>
+  const toggle = document.getElementById("themeToggle");
+  const root = document.documentElement;
+
+  function apply(theme) {
+    root.setAttribute("data-theme", theme);
+    toggle.textContent = theme === "dark" ? "Dark / Light" : "Light / Dark";
+    try { localStorage.setItem("theme", theme); } catch (e) {}
+  }
+
+  apply(localStorage.getItem("theme") || "light");
+
+  toggle.addEventListener("click", () => {
+    apply(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+
+  // ---------- Sliders ----------
+  document.querySelectorAll("[data-slider]").forEach(function (slider) {
+    const track = slider.querySelector(".track");
+    const slides = slider.querySelectorAll(".slide");
+    const counter = slider.querySelector("[data-counter]");
+    const prev = slider.querySelector("[data-prev]");
+    const next = slider.querySelector("[data-next]");
+    let index = 0;
+    let timer = null;
+
+    function render() {
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+      counter.textContent =
+        String(index + 1).padStart(2, "0") +
+        " / " +
+        String(slides.length).padStart(2, "0");
+    }
+
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      render();
+    }
+
+    function start() {
+      timer = setInterval(function () { go(index + 1); }, 4000);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    prev.addEventListener("click", function () { go(index - 1); });
+    next.addEventListener("click", function () { go(index + 1); });
+
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+
+    render();
+    start();
+  });
+</script>
+
+</body>
+</html>

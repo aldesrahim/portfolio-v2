@@ -1,0 +1,739 @@
+/* ==========================================================================
+   Catalogue — a printed reference page.
+   Palette: Nord, cool. One accent, hairline rules, no motion beyond the
+   slider track, no rounded corners, no shadow beyond the sheet's hairline.
+   ========================================================================== */
+
+:root {
+  --desk: #e5e9f0;
+  --paper: #fbfcfd;
+  --ink: #2e3440;
+  --ink-soft: #3b4252;
+  --muted: #4c566a;
+  --rule: #d8dee9;
+  --rule-faint: #eceff4;
+  --accent: #5e81ac;
+  --sheet-shadow: 0 1px 0 #c3cbd9;
+
+  --serif: var(--font-serif), Georgia, serif;
+  --mono: var(--font-mono), ui-monospace, monospace;
+
+  /* Height of the sticky navbar, so anchor jumps clear it. Measured: 54px on
+     one row, 88px when the bar wraps under 720px. */
+  --nav-h: 54px;
+
+  --sheet-width: 1040px;
+  --label-column: 200px;
+  --gutter: 40px;
+  --measure: 600px;
+}
+
+[data-theme='dark'] {
+  --desk: #1e222a;
+  --paper: #262b35;
+  --ink: #eceff4;
+  --ink-soft: #d8dee9;
+  --muted: #8a93a5;
+  --rule: #3b4252;
+  --rule-faint: #333a45;
+  --accent: #88c0d0;
+  --sheet-shadow: 0 1px 0 #14171d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+}
+
+html {
+  scroll-behavior: auto;
+  color-scheme: light;
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--desk);
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 48px 24px;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sheet {
+  max-width: var(--sheet-width);
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--sheet-shadow);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ---------- Navbar ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+nav .brand {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+nav .links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin-left: auto;
+}
+nav .links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 3px;
+  white-space: nowrap;
+}
+nav .links a.active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+}
+nav .links a:hover {
+  color: var(--accent);
+}
+nav .divider {
+  width: 1px;
+  height: 14px;
+  background: var(--rule);
+  flex: none;
+}
+
+.theme-toggle {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  padding: 6px 10px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.theme-toggle::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--accent);
+  border-radius: 50% !important;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.theme-toggle[data-theme='dark']::before {
+  background: var(--accent);
+}
+
+/* ---------- Bands: the spine ---------- */
+.band {
+  display: grid;
+  grid-template-columns: var(--label-column) 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.band:last-of-type {
+  border-bottom: none;
+}
+
+.band-label {
+  padding: 24px 24px 24px var(--gutter);
+  border-right: 1px solid var(--rule);
+  align-self: stretch;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.band-label .accent {
+  color: var(--accent);
+}
+.band-label .entry-num {
+  font-family: var(--mono);
+  font-size: 30px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.band-content {
+  padding: 34px var(--gutter) 40px;
+  min-width: 0;
+}
+
+/* ---------- Section header band ---------- */
+.section-band {
+  /* Anchor jumps stop below the sticky navbar instead of under it. */
+  scroll-margin-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: var(--label-column) 1fr;
+  border-bottom: 1px solid var(--rule);
+  padding: 18px var(--gutter);
+  align-items: baseline;
+}
+.section-band .section-label,
+.section-band .section-counter {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-band .section-counter {
+  letter-spacing: 0.12em;
+  text-align: right;
+}
+
+/* ---------- Hero ---------- */
+.hero .band-label {
+  padding-top: 40px;
+}
+.hero h1 {
+  font-size: 76px;
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.lede {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 620px;
+  color: var(--ink-soft);
+}
+.lede .draft {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---------- Work entry ---------- */
+.work h2 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+/* The title is the way into the project page — give it the link hairline so it
+   reads as one, and an accent cue on hover. */
+.work h2 a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+}
+.work h2 a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.work h2 a::after {
+  content: ' →';
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  vertical-align: 0.28em;
+}
+.work h2 a:hover::after {
+  color: var(--accent);
+}
+.work .desc {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.work .live-link {
+  display: inline-block;
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+  margin-bottom: 24px;
+}
+.work .live-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- Slider ---------- */
+.slider {
+  border: 1px solid var(--rule);
+  padding: 6px;
+}
+.slider .frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px dashed var(--rule);
+  background: var(--paper);
+}
+.slider .track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.slider .slide {
+  min-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--paper);
+}
+.slider .slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.slider .empty {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 18px;
+}
+.slider .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+}
+.slider .counter {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.slider .nav {
+  display: flex;
+  gap: 12px;
+}
+.slider .nav button {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.slider .nav button:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Also built ---------- */
+.also-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.also-row:last-child {
+  border-bottom: none;
+}
+.also-row .name {
+  font-size: 19px;
+  color: var(--ink);
+}
+.also-row .meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- OSS ---------- */
+.oss .band-label {
+  gap: 8px;
+}
+.repo-chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  padding: 4px 8px;
+  width: fit-content;
+}
+.oss h3 {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.oss .desc {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.oss .repo-link {
+  display: inline-block;
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.oss .repo-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- Stack ---------- */
+.stack-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.stack-row:last-child {
+  border-bottom: none;
+}
+.stack-row .stack-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  order: 2;
+}
+.stack-row .stack-items {
+  font-size: 19px;
+  color: var(--ink);
+  order: 1;
+}
+
+/* ---------- Contact ---------- */
+.contact .statement {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.link-table {
+  border-top: 1px solid var(--rule);
+}
+.link-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.link-row .link-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  order: 2;
+}
+.link-row .link-target {
+  font-size: 20px;
+  color: var(--ink);
+  order: 1;
+}
+.link-row .link-target:hover {
+  color: var(--accent);
+}
+
+/* ---------- Project page ---------- */
+.back-band {
+  display: grid;
+  grid-template-columns: var(--label-column) 1fr;
+  border-bottom: 1px solid var(--rule);
+  padding: 18px var(--gutter);
+}
+.back-band a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 3px;
+  width: fit-content;
+}
+.back-band a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.detail h1 {
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.detail .lede {
+  font-size: 21px;
+  max-width: var(--measure);
+  margin-bottom: 24px;
+}
+.detail .links-row {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.detail .links-row a {
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.detail .links-row a:hover {
+  color: var(--accent);
+}
+
+/* Markdown body of a project file. */
+.body-copy {
+  font-size: 18px;
+  line-height: 1.65;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+.body-copy > * + * {
+  margin-top: 16px;
+}
+.body-copy h2 {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.body-copy h3 {
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.body-copy a {
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.body-copy ul,
+.body-copy ol {
+  padding-left: 22px;
+}
+.body-copy li + li {
+  margin-top: 6px;
+}
+.body-copy blockquote {
+  border-left: 1px solid var(--rule);
+  padding-left: 18px;
+  color: var(--muted);
+}
+.body-copy code {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--ink);
+}
+.body-copy pre {
+  border: 1px solid var(--rule);
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+.body-copy hr {
+  border: none;
+  border-top: 1px solid var(--rule-faint);
+}
+.body-copy img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  padding: 6px;
+}
+.body-copy table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+}
+.body-copy th,
+.body-copy td {
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.body-copy th {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px var(--gutter);
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Narrow ---------- */
+@media (max-width: 720px) {
+  :root {
+    /* The navbar wraps to two rows here. */
+    --nav-h: 88px;
+  }
+  body {
+    padding: 0;
+  }
+  .sheet {
+    max-width: none;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Brand + toggle on row one, links on row two. */
+  nav {
+    flex-wrap: wrap;
+    padding: 14px 20px;
+    gap: 12px 20px;
+  }
+  nav .links {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  nav .divider {
+    order: 2;
+    margin-left: auto;
+  }
+  nav .theme-toggle {
+    order: 2;
+  }
+
+  .band,
+  .section-band,
+  .back-band {
+    grid-template-columns: 1fr;
+  }
+  .band .band-label,
+  .back-band {
+    padding: 14px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    align-items: baseline;
+  }
+  .band .band-label > * {
+    white-space: nowrap;
+  }
+  .band .band-label .accent {
+    margin-left: auto;
+  }
+  .back-band > span {
+    display: none;
+  }
+  .band-content {
+    padding: 24px 20px;
+  }
+  .section-band {
+    padding: 14px 20px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+  .hero .band-label {
+    padding-top: 20px;
+  }
+
+  /* The index list carries the meta; the description is the page's job. */
+  .work .desc {
+    display: none;
+  }
+
+  footer {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+}

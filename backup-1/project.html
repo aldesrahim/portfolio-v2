@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project — Ahmad Al Desrahim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --desk: #E5E9F0;
+  --paper: #FBFCFD;
+  --ink: #2E3440;
+  --ink-soft: #3B4252;
+  --muted: #4C566A;
+  --rule: #D8DEE9;
+  --rule-faint: #ECEFF4;
+  --accent: #5E81AC;
+  --sheet-shadow: 0 1px 0 #C3CBD9;
+}
+
+[data-theme="dark"] {
+  --desk: #1E222A;
+  --paper: #262B35;
+  --ink: #ECEFF4;
+  --ink-soft: #D8DEE9;
+  --muted: #8A93A5;
+  --rule: #3B4252;
+  --rule-faint: #333A45;
+  --accent: #88C0D0;
+  --sheet-shadow: 0 1px 0 #14171D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
+body {
+  background: var(--desk);
+  color: var(--ink-soft);
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 48px 24px;
+}
+
+p { text-wrap: pretty; }
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--accent); }
+
+.sheet {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--sheet-shadow);
+}
+
+/* ---------- Navbar ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+}
+nav .brand {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+nav .links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+nav .links a {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 3px;
+}
+nav .links a:hover { color: var(--accent); }
+
+.theme-toggle {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.theme-toggle:hover { color: var(--accent); }
+
+/* ---------- Bands ---------- */
+.band {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.band-label {
+  padding: 24px 24px 24px 40px;
+  border-right: 1px solid var(--rule);
+  align-self: stretch;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.band-label .entry-num {
+  font-size: 30px;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.band-label .accent { color: var(--accent); }
+.band-content {
+  padding: 34px 40px 40px;
+  min-width: 0;
+}
+
+/* ---------- Back link ---------- */
+.back-band {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--rule);
+  padding: 18px 40px;
+}
+.back-band a {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 3px;
+  width: fit-content;
+}
+.back-band a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---------- Detail header ---------- */
+.detail h1 {
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.detail .lede {
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 600px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.detail .links-row {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.detail .links-row a {
+  font-size: 17px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+}
+.detail .links-row a:hover { color: var(--accent); }
+
+/* ---------- Slider ---------- */
+.slider {
+  border: 1px solid var(--rule);
+  padding: 6px;
+}
+.slider .frame {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  border: 1px dashed var(--rule);
+}
+.slider .track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.slider .slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper);
+}
+.slider .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+}
+.slider .counter {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.slider .nav { display: flex; gap: 12px; }
+.slider .nav button {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.slider .nav button:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.slider .nav button:disabled {
+  color: var(--rule);
+  border-bottom-color: var(--rule-faint);
+  cursor: default;
+}
+
+/* ---------- Body copy ---------- */
+.body-copy {
+  font-size: 18px;
+  line-height: 1.65;
+  max-width: 600px;
+  color: var(--ink-soft);
+}
+.body-copy p { margin-bottom: 16px; }
+.body-copy p:last-child { margin-bottom: 0; }
+
+/* ---------- Footer ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 40px;
+  border-top: 1px solid var(--rule);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .band, .back-band {
+    grid-template-columns: 1fr;
+  }
+  .band-label, .back-band {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 24px;
+  }
+  .band-content { padding: 24px; }
+  .slider .frame { height: 260px; }
+  nav { flex-wrap: wrap; padding: 14px 24px; }
+  footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <nav>
+    <span class="brand">Ahmad Al Desrahim</span>
+    <div class="links">
+      <a href="index.html">Work</a>
+      <a href="index.html#built">Also built</a>
+      <a href="index.html#oss">OSS</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">Light / Dark</button>
+    </div>
+  </nav>
+
+  <div class="back-band">
+    <span></span>
+    <a href="index.html#work">← Back to work</a>
+  </div>
+
+  <section class="band detail">
+    <div class="band-label" id="label">
+      <span class="entry-num" id="num">01</span>
+      <div id="year">—</div>
+      <div id="client">—</div>
+      <span class="accent" id="stack">—</span>
+    </div>
+    <div class="band-content">
+      <h1 id="title">Project</h1>
+      <p class="lede" id="lede">—</p>
+      <div class="links-row" id="links"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-label">Gallery</div>
+    <div class="band-content">
+      <div class="slider" id="slider">
+        <div class="frame">
+          <div class="track" id="track"></div>
+        </div>
+        <div class="controls">
+          <span class="counter" id="counter">01 / 01</span>
+          <div class="nav">
+            <button id="prev" aria-label="Previous">Prev</button>
+            <button id="next" aria-label="Next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-label">About</div>
+    <div class="band-content">
+      <div class="body-copy" id="about"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Ahmad Al Desrahim</span>
+    <span>Newsreader · IBM Plex Mono</span>
+    <span>Printed, not poured</span>
+  </footer>
+
+</div>
+
+<script>
+  // ---------- Project data (placeholders awaiting owner's copy) ----------
+  const projects = {
+    "01": {
+      num: "01", title: "Project Title", year: "2024", client: "Client",
+      stack: "Stack", lede: "One-sentence description of the project and its role, kept to a single line of intent.",
+      live: "#", gallery: ["01 — 01", "01 — 02", "01 — 03"],
+      about: [
+        "A short opening paragraph about the project, its brief, and the problem it set out to solve. Draft copy awaiting the owner's wording.",
+        "A second paragraph on the approach — process, constraints, and the decisions that shaped the outcome."
+      ]
+    },
+    "02": {
+      num: "02", title: "Project Title", year: "2023", client: "Client",
+      stack: "Stack", lede: "One-sentence description of the project and its role, kept to a single line of intent.",
+      live: "#", gallery: ["02 — 01", "02 — 02", "02 — 03"],
+      about: [
+        "A short opening paragraph about the project, its brief, and the problem it set out to solve. Draft copy awaiting the owner's wording.",
+        "A second paragraph on the approach — process, constraints, and the decisions that shaped the outcome."
+      ]
+    },
+    "03": {
+      num: "03", title: "Project Title", year: "2022", client: "Client",
+      stack: "Stack", lede: "One-sentence description of the project and its role, kept to a single line of intent.",
+      live: "#", gallery: ["03 — 01", "03 — 02", "03 — 03"],
+      about: [
+        "A short opening paragraph about the project, its brief, and the problem it set out to solve. Draft copy awaiting the owner's wording.",
+        "A second paragraph on the approach — process, constraints, and the decisions that shaped the outcome."
+      ]
+    }
+  };
+
+  const id = new URLSearchParams(window.location.search).get("id") || "01";
+  const p = projects[id] || projects["01"];
+
+  document.getElementById("num").textContent = p.num;
+  document.getElementById("year").textContent = p.year;
+  document.getElementById("client").textContent = p.client;
+  document.getElementById("stack").textContent = p.stack;
+  document.getElementById("title").textContent = p.title;
+  document.getElementById("lede").textContent = p.lede;
+  document.title = p.title + " — Ahmad Al Desrahim";
+
+  const links = document.getElementById("links");
+  if (p.live) {
+    const a = document.createElement("a");
+    a.href = p.live;
+    a.textContent = "Live ↗";
+    links.appendChild(a);
+  }
+
+  const about = document.getElementById("about");
+  p.about.forEach(function (para) {
+    const el = document.createElement("p");
+    el.textContent = para;
+    about.appendChild(el);
+  });
+
+  // ---------- Gallery slider ----------
+  const track = document.getElementById("track");
+  p.gallery.forEach(function (label) {
+    const slide = document.createElement("div");
+    slide.className = "slide";
+    slide.textContent = label;
+    track.appendChild(slide);
+  });
+
+  const slides = track.querySelectorAll(".slide");
+  const counter = document.getElementById("counter");
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
+  const slider = document.getElementById("slider");
+  let index = 0;
+  let timer = null;
+
+  function render() {
+    track.style.transform = "translateX(-" + index * 100 + "%)";
+    counter.textContent =
+      String(index + 1).padStart(2, "0") +
+      " / " +
+      String(slides.length).padStart(2, "0");
+  }
+
+  function go(i) {
+    index = (i + slides.length) % slides.length;
+    render();
+  }
+
+  function start() {
+    timer = setInterval(function () { go(index + 1); }, 4000);
+  }
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  prev.addEventListener("click", function () { go(index - 1); });
+  next.addEventListener("click", function () { go(index + 1); });
+
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+
+  render();
+  start();
+
+  // ---------- Theme ----------
+  const toggle = document.getElementById("themeToggle");
+  const root = document.documentElement;
+  function apply(theme) {
+    root.setAttribute("data-theme", theme);
+    toggle.textContent = theme === "dark" ? "Dark / Light" : "Light / Dark";
+    try { localStorage.setItem("theme", theme); } catch (e) {}
+  }
+  apply(localStorage.getItem("theme") || "light");
+  toggle.addEventListener("click", function () {
+    apply(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+</script>
+
+</body>
+</html>
