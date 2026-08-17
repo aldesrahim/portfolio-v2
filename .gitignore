@@ -3,3 +3,7 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# Local deploy notes — server details, never committed
+DEPLOY.local.md
+*.local.md
