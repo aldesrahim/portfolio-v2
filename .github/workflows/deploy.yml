@@ -23,7 +23,13 @@ jobs:
           node-version: 24
           cache: npm
 
-      - run: npm ci
+      # sharp pulls platform-specific optional packages, and the versions the
+      # runner resolves for them drift from whatever the lockfile was generated
+      # against (@emnapi/*). `npm ci` refuses that outright, so fall back to a
+      # lockfile-guided install rather than pinning a tree that only reproduces
+      # on one machine.
+      - name: Install
+        run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
 
       - run: npm run build
 
